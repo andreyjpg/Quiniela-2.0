@@ -11,9 +11,7 @@ temas
 */
 package Admin;
 
-import java.sql.*;
 import Inicio_Sesion.Inicio;
-import db.conector;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -21,9 +19,6 @@ import javax.swing.table.TableModel;
 
 public class AgregarMarcador_Admin extends javax.swing.JFrame {
 
-    private Statement Sentenciador;
-    private ResultSet respuesta;
-    private Connection cn;
     private LinkedList<Marcadores> PuntosUsuario;
     private String[] usuarioActivo;
 
@@ -32,7 +27,6 @@ public class AgregarMarcador_Admin extends javax.swing.JFrame {
      */
     public AgregarMarcador_Admin() {
         initComponents();
-        conexion();
         CargarTabla();
     }
 
@@ -40,79 +34,40 @@ public class AgregarMarcador_Admin extends javax.swing.JFrame {
         this.usuarioActivo = usuarioActivo;
         setLocationRelativeTo(null);
         initComponents();
-        conexion();
         CargarTabla();
     }
     
-    private void conexion(){
-        try{
-            cn = conector.getConexion();
-            Sentenciador = cn.createStatement();
-        } catch(Exception e){
-            System.out.println(e);
-        }
-        
-    }
     
     private void UpdateTable(){
-        TableModel tabla = uiTablaMarcadores.getModel();
-        for(int vueltas = 0; vueltas<uiTablaMarcadores.getRowCount(); vueltas++){
-            String update ="UPDATE partido set marcadorL=?, marcadorV=?, iniciado=?, finalizado=? WHERE idPartido=?";
-            try {
-                PreparedStatement ps = cn.prepareStatement(update);
-                ps.setBoolean(3, (boolean) tabla.getValueAt(vueltas, 0));
-                ps.setBoolean(4, (boolean) tabla.getValueAt(vueltas, 1));
-                ps.setInt(2, Integer.parseInt(String.valueOf(tabla.getValueAt(vueltas, 4))));
-                ps.setInt(1, Integer.parseInt(String.valueOf(tabla.getValueAt(vueltas, 5))));
-                ps.setInt(5, Integer.parseInt(String.valueOf(tabla.getValueAt(vueltas, 6))));
-                ps.execute();
-            } catch (SQLException ex) {
-                System.out.println(ex);
-            }          
-        }
+        
     }
 
     private void CargarTabla() {
-        try {
-            String select = "SELECT * FROM partido";
-            ResultSet resultados = Sentenciador.executeQuery(select);
-            RefrescarTabla(resultados);
-
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
+        
     }
 
-    private void RefrescarTabla(ResultSet resultados) {
+    private void RefrescarTabla() {
         DefaultTableModel estructura = (DefaultTableModel) uiTablaMarcadores.getModel();
         //Limpia Jtable
         estructura.setRowCount(0);
         int fila = 0;
-        try {
-            while (resultados.next()) {
+            /*while (true) {
                 estructura.insertRow(fila, new Object[]{resultados.getBoolean("iniciado"), resultados.getBoolean("finalizado"), resultados.getString("equipoL"), resultados.getString("equipoV"), resultados.getString("marcadorV"), resultados.getString("marcadorL"), resultados.getInt("idPartido")});
                 fila++;
             }
             uiTablaMarcadores.getModel();
-        } catch (SQLException e) {
             System.out.println(e);
-        }
-
+*/
     }
     
     private void sumaPuntos(){
-        try {
-            String selectMarcadores = "SELECT * FROM marcadorusuario";
-            String updateMarcador = "Update marcadorusuario SET iniciado=?, puntosObtenidos = ? where idUsuario = ? AND idPartido = ?";
-
-            ResultSet marcadores = Sentenciador.executeQuery(selectMarcadores);
             TableModel tabla = uiTablaMarcadores.getModel();
             PuntosUsuario = new LinkedList<>();
             
             for(int row = 0; row < tabla.getRowCount(); row ++){ // recorrer los partidos
                 if(Boolean.parseBoolean(String.valueOf(tabla.getValueAt(row, 1))) ||Boolean.parseBoolean(String.valueOf(tabla.getValueAt(row, 0)))){ // si el partido esta finalizado o iniciado entonces
                     int idPT = Integer.parseInt(String.valueOf(tabla.getValueAt(row, 6))); // tomar valor de idPartido de la tabla
-                    
+                    /*
                     while(marcadores.next()){ // buscar todos los marccadores ingresados
                         int puntos = 0;
                         int idPM = marcadores.getInt("idPartido"); //tomar el valor idPartido de los marcadores
@@ -158,25 +113,17 @@ public class AgregarMarcador_Admin extends javax.swing.JFrame {
                             }
                             
                         }
-                    }
-                    marcadores.first();
+                    }*/
                 }
                 
-            }
-            marcadores.close();
             sumaUsuario();
-        } catch(SQLException e){
-            System.out.println(e);
-        }
-        
+        }   
     }
     
     private void sumaUsuario(){
-            String selectUsuario = "SELECT * FROM usuario"; 
-            String UpdateUsuario = "update usuario SET puntosObtenidos = ? WHERE idUsuario = ?";
+      /*
             int puntos;
             try{
-                ResultSet usuarios = Sentenciador.executeQuery(selectUsuario);
                 
                 while(usuarios.next()){
                     puntos  = 0;
@@ -196,7 +143,7 @@ public class AgregarMarcador_Admin extends javax.swing.JFrame {
             } catch(SQLException e){
                 System.out.println(e);
             }
-            
+            */
     }
 
     /**
@@ -344,11 +291,7 @@ public class AgregarMarcador_Admin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void uiAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uiAtrasActionPerformed
-        try{
-            cn.close();
-        } catch(SQLException e){
-            System.out.println(e);
-        }
+
         MenúAdmin atras = new MenúAdmin(usuarioActivo);
         atras.setVisible(true);
         this.setVisible(false);

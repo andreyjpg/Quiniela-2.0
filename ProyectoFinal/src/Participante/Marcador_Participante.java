@@ -14,8 +14,6 @@ package Participante;
 
 import Exceptions.PartidoIniciadoException;
 import Participante.*;
-import db.conector;
-import java.sql.*;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -23,10 +21,6 @@ import javax.swing.table.TableModel;
 
 public class Marcador_Participante extends javax.swing.JFrame {
 
-    private Statement Sentenciador;
-    private ResultSet resultados;
-    private Connection cn;
-    private Statement sentenciador;
     DefaultTableModel estructura;
     private String[] usuarioActivo;
     /**
@@ -35,7 +29,6 @@ public class Marcador_Participante extends javax.swing.JFrame {
      public Marcador_Participante(String[] usuarioActivo){
         initComponents();
         this.usuarioActivo = usuarioActivo;
-        conexion();
         Marcadorusuario();
         setLocationRelativeTo(null);  
         
@@ -46,65 +39,27 @@ public class Marcador_Participante extends javax.swing.JFrame {
     }
   
      private void Marcadorusuario() {
-        try {
-            String select = "SELECT * FROM marcadorusuario where idUsuario="+usuarioActivo[0];
-            ResultSet resultados = Sentenciador.executeQuery(select);
-            RefrescarTabla(resultados);
-
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
+        
     }
    
 
-    private void RefrescarTabla(ResultSet resultados) {
+    private void RefrescarTabla() {
         DefaultTableModel estructura = (DefaultTableModel) TablaMarcador.getModel();
         //Limpia Jtable
         estructura.setRowCount(0);
         int fila = 0;
-        try {
-            while (resultados.next()) {
-                estructura.insertRow(fila, new Object[]{resultados.getBoolean("iniciado"), resultados.getString("equipol"), resultados.getString("marcadorl"),resultados.getString("equipov"), resultados.getString("marcadorv"),resultados.getInt("idPartido"), resultados.getInt("puntosObtenidos")});
+            while (true) {
+                //estructura.insertRow(fila, new Object[]{resultados.getBoolean("iniciado"), resultados.getString("equipol"), resultados.getString("marcadorl"),resultados.getString("equipov"), resultados.getString("marcadorv"),resultados.getInt("idPartido"), resultados.getInt("puntosObtenidos")});
                 fila++;
             }
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
+
 
     }
-      private void conexion(){
-        try{
-            cn = conector.getConexion();
-            Sentenciador = cn.createStatement();
-        } catch(Exception e){
-            System.out.println(e);
-        }
-        
-    }
+      
       private void UpdateTable() throws PartidoIniciadoException{
-          boolean partidoIniciado = false;
-        TableModel tabla = TablaMarcador.getModel();
-        for(int vueltas = 0; vueltas<TablaMarcador.getRowCount(); vueltas++){
-            if(!Boolean.parseBoolean(String.valueOf(tabla.getValueAt(vueltas, 0)))){
-               String update ="UPDATE marcadorusuario SET marcadorL=?, marcadorV=? WHERE idPartido=? AND idUsuario=?";
-                try {
-                    PreparedStatement ps = cn.prepareStatement(update);
-                    ps.setInt(1, Integer.parseInt(String.valueOf(tabla.getValueAt(vueltas, 2))));
-                    ps.setInt(2, Integer.parseInt(String.valueOf(tabla.getValueAt(vueltas, 4))));
-                    ps.setInt(3, Integer.parseInt(String.valueOf(tabla.getValueAt(vueltas, 5))));
-                    ps.setInt(4, Integer.parseInt(usuarioActivo[0])); 
-                    ps.execute();
-                } catch (SQLException ex) {
-                    System.out.println(ex);
-                }     
-            } else {
-                partidoIniciado = true;
-            } 
+        
                              
-        }
-        if(partidoIniciado){
-            throw new PartidoIniciadoException();
-        }   
+       
     }
       
 
@@ -281,7 +236,6 @@ public class Marcador_Participante extends javax.swing.JFrame {
 
     private void cargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarActionPerformed
         
-       conexion();
         Marcadorusuario();
         
     }//GEN-LAST:event_cargarActionPerformed

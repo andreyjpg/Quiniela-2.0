@@ -12,28 +12,21 @@ temas
 package Admin;
 
 import Inicio_Sesion.Inicio;
-import com.mysql.cj.xdevapi.PreparableStatement;
-import db.conector;
-import java.sql.*;
 import javax.swing.JOptionPane;
 
 
 public class AgregarPartidos_Admin extends javax.swing.JFrame {
-    private Connection cn;
-    private Statement Sentenciador;
     private String[] usuarioActivo;
     /**
      * Creates new form AñadirPartidos_Admin
      */
     public AgregarPartidos_Admin() {
         initComponents();
-        conexion();
     }
     
     public AgregarPartidos_Admin(String[] usuarioActivo) {
         initComponents();
         setLocationRelativeTo(null);
-        conexion();
         this.usuarioActivo = usuarioActivo;
     }
 
@@ -209,69 +202,16 @@ public class AgregarPartidos_Admin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     
-    private void conexion(){
-        try{
-            cn = conector.getConexion();
-            Sentenciador = cn.createStatement();
-        } catch(Exception e){
-            System.out.println(e);
-        }
-        
-    }
+
     private void uiGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uiGuardarActionPerformed
         // TODO add your handling code here:
 
-        try {
-            String sql = "insert into partido(equipoL,marcadorL,equipoV,marcadorV,iniciado,finalizado) values(?,?,?,?,?,?)";
-            PreparedStatement ps = cn.prepareStatement(sql);
-            ps.setString(1, uiEquipoLoc.getText());
-            ps.setString(2, "0");
-            ps.setString(3, uiEquipoVis.getText());
-            ps.setString(4, "0");
-            ps.setString(5, "0");
-            ps.setString(6, "0");
-
-            ps.execute();
-            partidosUsuarios();
-            uiEquipoLoc.setText("");
-            uiEquipoVis.setText("");
-            JOptionPane.showMessageDialog(null, "Partido Registrado!");
-                
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        
     }//GEN-LAST:event_uiGuardarActionPerformed
 
     
     private void partidosUsuarios(){
-        try{
-            String insert = "INSERT INTO marcadorusuario(idUsuario,idPartido,equipoL,marcadorL,equipoV,marcadorV,puntosObtenidos) values(?,?,?,?,?,?,?)";
-            
-            PreparedStatement user = cn.prepareStatement("SELECT * FROM usuario");
-            ResultSet usuario = user.executeQuery();
-            PreparedStatement partidoStat = cn.prepareStatement("SELECT * FROM partido");
-            ResultSet partido = partidoStat.executeQuery();
-            partido.last();
-            while(usuario.next()){
-                if(!usuario.getBoolean("isAdmin")){
-                    PreparedStatement ps = cn.prepareStatement(insert);
-                
-                    ps.setInt(1, usuario.getInt("idUsuario"));
-                    ps.setInt(2, partido.getInt("idPartido"));
-                    ps.setString(3, partido.getString("equipoL"));
-                    ps.setInt(4, partido.getInt("marcadorL"));
-                    ps.setString(5, partido.getString("equipoV"));
-                    ps.setInt(6, partido.getInt("marcadorV"));
-                    ps.setInt(7, 0);
-
-                    ps.execute();
-                }
-                
-                
-            }
-        }catch(SQLException e){
-            System.out.println(e);
-        }
+        
     }
     
     private void uiAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uiAtrasActionPerformed

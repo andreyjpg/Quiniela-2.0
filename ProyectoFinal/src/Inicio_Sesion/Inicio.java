@@ -11,7 +11,6 @@ temas
 */
 package Inicio_Sesion;
 
-import java.sql.*;
 import javax.swing.JOptionPane;
 
 import Admin.MenúAdmin;
@@ -221,40 +220,7 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
     
     private void login() throws InicioSesionException{
-        try{
-            Connection cn = db.conector.getConexion();
-            String sql = "Select idUsuario, name, isAdmin From usuario where correo = ? && contraseña = ?";
-            PreparedStatement ps = cn.prepareStatement(sql);
-            ps.setString(1, uiCorreo.getText());
-            ps.setString(2, uiPassword.getText());
-            ResultSet result = ps.executeQuery();
-            
-            if(result.first()){
-                actiUsuario = new String[3];
-                actiUsuario[0] = result.getString("idUsuario");
-                actiUsuario[1] = result.getString("name");
-                actiUsuario[2] = result.getString("isAdmin");
-                
-                JOptionPane.showMessageDialog(null, "Sesión Iniciada");
-                if(result.getBoolean("isAdmin")){
-                    MenúAdmin nextFrame = new MenúAdmin(actiUsuario);
-                    nextFrame.setVisible(true);
-                    this.setVisible(false);
-                } else {
-                    MenuParticipante nextFrame = new MenuParticipante(actiUsuario);
-                    nextFrame.setVisible(true);
-                    this.setVisible(false);
-                }
-            } else {
-               throw new InicioSesionException();
-            }
-            
-            result.close();
-            ps.close();
-            cn.close();     
-        } catch(Exception e){
-            JOptionPane.showMessageDialog(null, e);
-        }
+       
         
     }
     /**

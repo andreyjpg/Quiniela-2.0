@@ -186,29 +186,7 @@ public class Registrarse extends javax.swing.JFrame {
     }//GEN-LAST:event_uiNombreActionPerformed
 
     private void uiRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uiRegistrarseActionPerformed
-        if((uiComfContraseña.getText()).equals(uiContraseña.getText())){
-            try{
-                              
-                Connection cn = db.conector.getConexion();
-                String sql = "insert into usuario(name, correo,contraseña,isAdmin) values(?,?,?,?)";
-                PreparedStatement ps = cn.prepareStatement(sql);
-                ps.setString(1, uiNombre.getText());
-                ps.setString(2, uiCorreo.getText());
-                ps.setString(3, uiContraseña.getText());
-                ps.setString(4, "0");
-                ps.execute();
-                JOptionPane.showMessageDialog(null, "Usuario guardado");
-                
-                
-                Inicio ini = new Inicio();
-                ini.setVisible(true);
-                this.setVisible(false);
-            }catch(Exception e){
-                System.out.println(e);
-            }
-        } else{
-            JOptionPane.showMessageDialog(null, "Las contraseñas ingresada son distintas");
-        }
+        
         
 
     }//GEN-LAST:event_uiRegistrarseActionPerformed

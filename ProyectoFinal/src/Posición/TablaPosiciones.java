@@ -13,7 +13,6 @@ package Posición;
 
 import Admin.MenúAdmin;
 import Participante.MenuParticipante;
-import db.conector;
 import java.sql.*;
 import java.util.*;
 import javax.swing.table.DefaultTableModel;
@@ -47,37 +46,11 @@ public class TablaPosiciones extends javax.swing.JFrame {
     }
     
     private void posiciones(){
-        try{
-            String select = "SELECT * FROM usuario ORDER BY puntosObtenidos DESC";
-            ResultSet usuarios = Sentenciador.executeQuery(select);
-            
-            DefaultTableModel estructura = (DefaultTableModel) uiPosiciones.getModel();
-               //Limpia Jtable
-               estructura.setRowCount(0);
-               int fila = 0;
-               try {
-                   while (usuarios.next()) {
-                       if(!usuarios.getBoolean("isAdmin")){
-                           estructura.insertRow(fila, new Object[]{String.valueOf(fila+1), usuarios.getString("name"), usuarios.getInt("puntosObtenidos")});
-                           fila++;
-                       }
-                       
-                   }
-                   uiPosiciones.getModel();
-               } catch (SQLException e) {
-                   System.out.println(e);
-               }
-           //posicion.add(new Posiciones(usuarios.getString("nombre"), usuarios.getInt("puntosObtenidos")));
-            
-           // Collections.sort(posicion.getPuntaje());
-        } catch(SQLException e){
-            
-        }
+        
     }
     
     private void conexion(){
         try{
-            cn = conector.getConexion();
             Sentenciador = cn.createStatement();
         } catch(Exception e){
             System.out.println(e);
