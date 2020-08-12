@@ -5,11 +5,6 @@
  */
 package Premios;
 
-/**
- *
- * @author dfallasm
- */
-
 //NodoLCD = Nodo Lista Circular Doblemente Enlazada
 
 

@@ -3,25 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Datos;
+package Posición;
 
-/**
- *
- * @author dfallasm
- */
 public class Dato {
-    private String dato;
+    private String nombre;
+    private int puntaje;
     
     public Dato(){
-        this.dato="";
+        this.nombre = "";
+        this.puntaje = 0;
     }
 
-    public String getDato() {
-        return dato;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setDato(String dato) {
-        this.dato = dato;
+    public int getPuntaje() {
+        return puntaje;
     }
-     
+        
 }

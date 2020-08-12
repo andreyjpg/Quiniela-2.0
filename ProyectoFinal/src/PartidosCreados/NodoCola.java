@@ -4,10 +4,7 @@
  * and open the template in the editor.
  */
 package PartidosCreados;
-/**
- *
- * @author dfallasm
- */
+
 public class NodoCola {
     
     private Dato dato;

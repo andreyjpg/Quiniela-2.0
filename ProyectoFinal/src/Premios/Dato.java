@@ -5,10 +5,7 @@
  */
 package Premios;
 
-/**
- *
- * @author Andrey
- */
+
 public class Dato {
     private int idPremio;
     private String descripcion;

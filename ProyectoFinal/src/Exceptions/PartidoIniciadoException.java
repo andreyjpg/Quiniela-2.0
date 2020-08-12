@@ -1,13 +1,6 @@
 /*Integrantes 
     Andrey Pérez Granados
     David Fallas Morales
-    Ericson Tames Quesada  
-
-temas
-    Base de datos: mysql
-    SWING GUI
-    Colecciones
-    Excepciones
 */
 package Exceptions;
 

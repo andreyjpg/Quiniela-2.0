@@ -5,10 +5,6 @@
  */
 package Usuarios;
 
-/**
- *
- * @author Andrey
- */
 public class Dato {
     private int idUsuario;
     private String name;

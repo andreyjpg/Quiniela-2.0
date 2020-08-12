@@ -7,10 +7,6 @@ package Usuarios;
 
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Andrey
- */
 public class ListaDobleEnlazada {
     private NodoLED inicio;
     private NodoLED fin;

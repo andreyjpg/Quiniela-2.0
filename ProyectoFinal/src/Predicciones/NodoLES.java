@@ -3,24 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Nodos;
+package Predicciones;
 
-import Datos.Dato;
 
-/**
- *
- * @author dfallasm
- */
-
-//NodoLCS = Nodo Lista Circular Simplemente Enlazada
-public class NodoLCS {
-
+public class NodoLES {
+    
     private Dato dato;
-    private NodoLCS siguiente;
-
-    public NodoLCS(){
-        this.dato = null;
-        this.siguiente = null;
+    private NodoLES siguiente;
+    
+    public NodoLES(){
+        this.siguiente=null;
+        this.dato=null;
     }
 
     public Dato getDato() {
@@ -31,11 +24,12 @@ public class NodoLCS {
         this.dato = dato;
     }
 
-    public NodoLCS getSiguiente() {
+    public NodoLES getSiguiente() {
         return siguiente;
     }
 
-    public void setSiguiente(NodoLCS siguiente) {
+    public void setSiguiente(NodoLES siguiente) {
         this.siguiente = siguiente;
-    }    
+    }
+      
 }

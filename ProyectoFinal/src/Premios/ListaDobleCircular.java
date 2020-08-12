@@ -7,10 +7,6 @@ package Premios;
 
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Andrey
- */
 public class ListaDobleCircular {
     private NodoLCD inicio;
     private NodoLCD fin;

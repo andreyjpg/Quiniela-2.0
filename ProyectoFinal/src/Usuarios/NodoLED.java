@@ -5,10 +5,6 @@
  */
 package Usuarios;
 
-/**
- *
- * @author dfallasm
- */
 
 //NodoLED = Nodo Lista Enlazada Doble
 public class NodoLED {

@@ -5,10 +5,7 @@
  */
 package PartidosCreados;
 
-/**
- *
- * @author Andrey
- */
+
 public class Dato {
     private int idPartido;
     private String equipoL;
