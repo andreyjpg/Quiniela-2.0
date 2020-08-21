@@ -10,8 +10,10 @@ import Inicio_Sesion.Inicio;
 
 
 import Posición.TablaPosiciones;
+import Estructuras.Estructuras;
 public class MenúAdmin extends javax.swing.JFrame {
-    private String[] usuarioActivo;
+    private Usuarios.Dato usuarioActivo;
+    private Estructuras estructurasDatosObject;
     /**
      * Creates new form MenúAdmin
      */
@@ -21,11 +23,11 @@ public class MenúAdmin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     
-    public MenúAdmin(String[] usuarioActivo) {
+    public MenúAdmin(Estructuras objeto, Usuarios.Dato usuarioActivo) {
         initComponents();
         setLocationRelativeTo(null);
         this.usuarioActivo = usuarioActivo;
-        uiUsuarioAdmin.setText(usuarioActivo[1]);
+        this.estructurasDatosObject = objeto;
     }
 
     /**
@@ -180,14 +182,14 @@ public class MenúAdmin extends javax.swing.JFrame {
 
     private void uiAgPartidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uiAgPartidosActionPerformed
         // TODO add your handling code here:
-        AgregarPartidos_Admin agregar = new AgregarPartidos_Admin(usuarioActivo);
+        AgregarPartidos_Admin agregar = new AgregarPartidos_Admin(estructurasDatosObject, usuarioActivo);
         agregar.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_uiAgPartidosActionPerformed
 
     private void uiAgMarcadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uiAgMarcadoresActionPerformed
         // TODO add your handling code here:
-        AgregarMarcador_Admin agregarMarc = new AgregarMarcador_Admin(usuarioActivo);
+        AgregarMarcador_Admin agregarMarc = new AgregarMarcador_Admin(estructurasDatosObject, usuarioActivo);
         agregarMarc.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_uiAgMarcadoresActionPerformed
@@ -200,7 +202,7 @@ public class MenúAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_uiCerrarSesionActionPerformed
 
     private void uiVerRankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uiVerRankingActionPerformed
-        TablaPosiciones sigPantalla = new TablaPosiciones(usuarioActivo);
+        TablaPosiciones sigPantalla = new TablaPosiciones(estructurasDatosObject, usuarioActivo);
         sigPantalla.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_uiVerRankingActionPerformed

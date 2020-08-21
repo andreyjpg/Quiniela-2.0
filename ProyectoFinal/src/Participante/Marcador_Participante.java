@@ -12,6 +12,7 @@ temas
 package Participante;
 
 
+import Estructuras.Estructuras;
 import Exceptions.PartidoIniciadoException;
 import Participante.*;
 
@@ -22,11 +23,12 @@ import javax.swing.table.TableModel;
 public class Marcador_Participante extends javax.swing.JFrame {
 
     DefaultTableModel estructura;
-    private String[] usuarioActivo;
+    private Usuarios.Dato usuarioActivo;
+    private Estructuras estructurasDatosObject;
     /**
      * Creates new form Marcador_Participante
      */
-     public Marcador_Participante(String[] usuarioActivo){
+     public Marcador_Participante(Estructuras objeto, Usuarios.Dato usuarioActivo){
         initComponents();
         this.usuarioActivo = usuarioActivo;
         Marcadorusuario();
@@ -217,7 +219,7 @@ public class Marcador_Participante extends javax.swing.JFrame {
 
     private void atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasActionPerformed
         
-        MenuParticipante atras = new MenuParticipante(usuarioActivo);
+        MenuParticipante atras = new MenuParticipante(estructurasDatosObject, usuarioActivo);
         atras.setVisible(true);
         this.setVisible(false);
         

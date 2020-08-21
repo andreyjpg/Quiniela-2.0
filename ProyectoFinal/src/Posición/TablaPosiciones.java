@@ -12,6 +12,7 @@ temas
 package Posición;
 
 import Admin.MenúAdmin;
+import Estructuras.Estructuras;
 import Participante.MenuParticipante;
 import java.sql.*;
 import java.util.*;
@@ -21,8 +22,9 @@ import javax.swing.table.DefaultTableModel;
 public class TablaPosiciones extends javax.swing.JFrame {
     private Connection cn;
     private Statement Sentenciador;
-    private LinkedList<Posiciones> posicion;
-    private String[] usuarioActivo;
+    private LinkedList<Pila> posicion;
+    private Usuarios.Dato usuarioActivo;
+    private Estructuras estructurasDatosObject;
             
 
     /**
@@ -36,12 +38,13 @@ public class TablaPosiciones extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
     
-    public TablaPosiciones(String[] usuarioActivo) {
+    public TablaPosiciones(Estructuras objeto, Usuarios.Dato usuarioActivo) {
         initComponents();
         conexion();
         posicion = new LinkedList<>();
         posiciones();
         this.usuarioActivo = usuarioActivo;
+        this.estructurasDatosObject = objeto;
         setLocationRelativeTo(null);
     }
     
@@ -175,12 +178,12 @@ public class TablaPosiciones extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarActionPerformed
-        if(usuarioActivo[2].equals("1")){
-            MenúAdmin menú = new MenúAdmin(usuarioActivo);
+        if(usuarioActivo.isIsAdmin()){
+            MenúAdmin menú = new MenúAdmin(estructurasDatosObject, usuarioActivo);
             menú.setVisible(true);
             this.setVisible(false);
         } else {
-            MenuParticipante menú =  new MenuParticipante(usuarioActivo);
+            MenuParticipante menú =  new MenuParticipante(estructurasDatosObject, usuarioActivo);
             menú.setVisible(true);
             this.setVisible(false);
         }

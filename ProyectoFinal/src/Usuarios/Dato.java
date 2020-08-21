@@ -7,17 +7,15 @@ package Usuarios;
 
 public class Dato {
     private int idUsuario;
-    private String name;
     private String correo;
     private String contraseña;
     private boolean isAdmin;
     
-    public Dato() {
-        idUsuario = 0;
-        name = "";
-        correo = "";
-        contraseña = "";
-        isAdmin = false;
+    public Dato(String correo, String contraseña ) {
+        this.idUsuario = 0;
+        this.correo = correo;
+        this.contraseña = contraseña;
+        this.isAdmin = false;
     }
 
     public int getIdUsuario() {
@@ -26,14 +24,6 @@ public class Dato {
 
     public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getCorreo() {

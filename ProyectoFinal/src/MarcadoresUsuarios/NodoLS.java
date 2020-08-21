@@ -3,17 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Predicciones;
+package MarcadoresUsuarios;
 
-
-public class NodoLES {
-    
+public class NodoLS {
     private Dato dato;
-    private NodoLES siguiente;
+    private NodoLS siguiente;
     
-    public NodoLES(){
-        this.siguiente=null;
-        this.dato=null;
+    public NodoLS(){
+        siguiente = null;
     }
 
     public Dato getDato() {
@@ -24,12 +21,13 @@ public class NodoLES {
         this.dato = dato;
     }
 
-    public NodoLES getSiguiente() {
+    public NodoLS getSiguiente() {
         return siguiente;
     }
 
-    public void setSiguiente(NodoLES siguiente) {
+    public void setSiguiente(NodoLS siguiente) {
         this.siguiente = siguiente;
     }
-      
+    
+    
 }

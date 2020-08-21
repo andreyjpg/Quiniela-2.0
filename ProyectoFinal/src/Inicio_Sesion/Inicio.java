@@ -14,18 +14,26 @@ package Inicio_Sesion;
 import javax.swing.JOptionPane;
 
 import Admin.MenúAdmin;
+import Estructuras.Estructuras;
 import Exceptions.InicioSesionException;
 import Participante.MenuParticipante;
 
 public class Inicio extends javax.swing.JFrame {
     private String[] actiUsuario;
+    private Estructuras estructurasDatosObject;
     /**
      * Creates new form Inicio
      */
     public Inicio() {
         initComponents();
         setLocationRelativeTo(null);
-        
+        estructurasDatosObject = new Estructuras();
+    }
+    
+    public Inicio(Estructuras objeto) {
+        initComponents();
+        setLocationRelativeTo(null);
+        estructurasDatosObject = objeto;
     }
 
     /**
@@ -201,7 +209,7 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_uiCorreoActionPerformed
 
     private void uiRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uiRegistrarseActionPerformed
-       Registrarse registro = new Registrarse();
+       Registrarse registro = new Registrarse(estructurasDatosObject);
        registro.setVisible(true);
        this.setVisible(false);
     }//GEN-LAST:event_uiRegistrarseActionPerformed
@@ -220,7 +228,22 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
     
     private void login() throws InicioSesionException{
-       
+       String correo = uiCorreo.getText();
+       String contra = uiPassword.getText();
+       Usuarios.Dato usuario = estructurasDatosObject.getListaUsuarios().inicioSesión(correo, contra);
+       if( usuario != null){
+           if(usuario.isIsAdmin()){
+               Admin.MenúAdmin menúWindow = new Admin.MenúAdmin(estructurasDatosObject, usuario);
+               this.setVisible(false);
+               menúWindow.setVisible(true);
+           }else {
+               Participante.MenuParticipante menúWindow = new Participante.MenuParticipante(estructurasDatosObject, usuario);
+               this.setVisible(false);
+               menúWindow.setVisible(true);
+           }
+       }else {
+           throw new InicioSesionException();
+       }
         
     }
     /**

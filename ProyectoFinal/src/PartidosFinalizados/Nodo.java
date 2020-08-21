@@ -3,17 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package PartidoDisputar;
+package PartidosFinalizados;
 
-//NodoLCS = Nodo Lista Circular Simplemente Enlazada
-public class NodoLCS {
-
+/**
+ *
+ * @author Andrey
+ */
+public class Nodo {
     private Dato dato;
-    private NodoLCS siguiente;
-
-    public NodoLCS(){
-        this.dato = null;
-        this.siguiente = null;
+    private Nodo siguiente;
+    
+    public Nodo() {
+        siguiente = null;
     }
 
     public Dato getDato() {
@@ -24,11 +25,13 @@ public class NodoLCS {
         this.dato = dato;
     }
 
-    public NodoLCS getSiguiente() {
+    public Nodo getSiguiente() {
         return siguiente;
     }
 
-    public void setSiguiente(NodoLCS siguiente) {
+    public void setSiguiente(Nodo siguiente) {
         this.siguiente = siguiente;
-    }    
+    }
+    
+    
 }

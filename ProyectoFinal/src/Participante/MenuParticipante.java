@@ -14,10 +14,13 @@ package Participante;
 
 import Inicio_Sesion.Inicio;
 import Posición.TablaPosiciones;
+import Estructuras.Estructuras;
+import Usuarios.Dato;
 
 
 public class MenuParticipante extends javax.swing.JFrame {
-          private String[] usuarioActivo;
+          private Estructuras estructurasDatosObject;
+          private Usuarios.Dato usuarioActivo;
           
     /**
      * Creates new form MenuParticipante
@@ -26,11 +29,11 @@ public class MenuParticipante extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null); //se centra la pantalla
     }
-    public MenuParticipante (String[] usuarioActivo) {
+    public MenuParticipante (Estructuras estructuras, Usuarios.Dato usuarioActivo) {
         initComponents();
         setLocationRelativeTo(null);
+        this.estructurasDatosObject = estructuras;
         this.usuarioActivo = usuarioActivo;
-        uiNombreUsuario.setText(usuarioActivo[1]);
     }
 
 
@@ -198,7 +201,7 @@ public class MenuParticipante extends javax.swing.JFrame {
 
     private void amarcadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amarcadorActionPerformed
         //Asignacion de la tabla marcador_Participante
-        Marcador_Participante agregarMarc = new Marcador_Participante(usuarioActivo); 
+        Marcador_Participante agregarMarc = new Marcador_Participante(estructurasDatosObject, usuarioActivo); 
         agregarMarc.setVisible(true);
         this.setVisible(false);
         
@@ -206,7 +209,7 @@ public class MenuParticipante extends javax.swing.JFrame {
     }//GEN-LAST:event_amarcadorActionPerformed
 
     private void vrankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vrankingActionPerformed
-       TablaPosiciones tabla = new TablaPosiciones(usuarioActivo);
+       TablaPosiciones tabla = new TablaPosiciones(estructurasDatosObject, usuarioActivo);
        tabla.setVisible(true);
        this.setVisible(false);
     }//GEN-LAST:event_vrankingActionPerformed

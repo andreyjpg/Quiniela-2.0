@@ -11,6 +11,7 @@ temas
 */
 package Admin;
 
+import Estructuras.Estructuras;
 import Inicio_Sesion.Inicio;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
@@ -18,9 +19,11 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 public class AgregarMarcador_Admin extends javax.swing.JFrame {
-
+    private Usuarios.Dato usuarioActivo;
+    private Estructuras estructurasDatosObject;
+    
+    
     private LinkedList<Marcadores> PuntosUsuario;
-    private String[] usuarioActivo;
 
     /**
      * Creates new form AgreagarMarcador
@@ -30,10 +33,11 @@ public class AgregarMarcador_Admin extends javax.swing.JFrame {
         CargarTabla();
     }
 
-        public AgregarMarcador_Admin(String[] usuarioActivo) {
-        this.usuarioActivo = usuarioActivo;
-        setLocationRelativeTo(null);
+        public AgregarMarcador_Admin(Estructuras objeto, Usuarios.Dato usuarioActivo) {
         initComponents();
+        this.usuarioActivo = usuarioActivo;
+        this.estructurasDatosObject = objeto;
+        setLocationRelativeTo(null);
         CargarTabla();
     }
     
@@ -292,7 +296,7 @@ public class AgregarMarcador_Admin extends javax.swing.JFrame {
 
     private void uiAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uiAtrasActionPerformed
 
-        MenúAdmin atras = new MenúAdmin(usuarioActivo);
+        MenúAdmin atras = new MenúAdmin(estructurasDatosObject, usuarioActivo);
         atras.setVisible(true);
         this.setVisible(false);
         
