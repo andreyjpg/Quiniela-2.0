@@ -13,11 +13,11 @@ public class Dato {
     private String equipoV;
     private int marcadorV;
     
-    public Dato() {
+    public Dato(String local, String visitante) {
         idPartido = 0;
-        equipoL = "";
+        equipoL = local;
         marcadorL = 0;
-        equipoV = "";
+        equipoV = visitante;
         marcadorV = 0;
     }
 

@@ -202,7 +202,11 @@ public class AgregarPartidos_Admin extends javax.swing.JFrame {
     
 
     private void uiGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uiGuardarActionPerformed
-        // TODO add your handling code here:
+        String equipoL = uiEquipoLoc.getText();
+        String equipoV = uiEquipoVis.getText();
+        if(!equipoL.equals("") && equipoV.equals("")){
+            
+        }
 
         
     }//GEN-LAST:event_uiGuardarActionPerformed

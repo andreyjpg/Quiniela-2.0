@@ -42,7 +42,6 @@ public class TablaPosiciones extends javax.swing.JFrame {
         initComponents();
         conexion();
         posicion = new LinkedList<>();
-        posiciones();
         this.usuarioActivo = usuarioActivo;
         this.estructurasDatosObject = objeto;
         setLocationRelativeTo(null);

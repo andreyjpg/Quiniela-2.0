@@ -48,4 +48,16 @@ public class Cola {
            JOptionPane.showMessageDialog(null, "No se puede desencolar, Pila vacia");
         }
     }
+    
+    public int cantidadPartidos(){
+        int count = 0;
+        if(!esVacia()){
+            NodoCola aux = frente;
+            while(frente != null){
+                count ++;
+                aux = aux.getSiguiente();
+            }
+        }
+        return count;
+    }
 }
