@@ -1,13 +1,6 @@
 /*Integrantes 
     Andrey Pérez Granados
     David Fallas Morales
-    Ericson Tames Quesada  
-
-temas
-    Base de datos: mysql
-    SWING GUI
-    Colecciones
-    Excepciones
 */
 package Admin;
 
@@ -70,6 +63,11 @@ public class AgregarPartidos_Admin extends javax.swing.JFrame {
         });
 
         uiEquipoLoc.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
+        uiEquipoLoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uiEquipoLocActionPerformed(evt);
+            }
+        });
 
         uiEquipoVis.setFont(new java.awt.Font("Agency FB", 1, 18)); // NOI18N
 
@@ -169,9 +167,9 @@ public class AgregarPartidos_Admin extends javax.swing.JFrame {
                     .addComponent(labelEquipoLoc1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(uiEquipoLoc)
                     .addComponent(uiEquipoVis)
-                    .addComponent(labelVS, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(labelVS, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(uiEquipoLoc, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -222,6 +220,10 @@ public class AgregarPartidos_Admin extends javax.swing.JFrame {
         atras.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_uiAtrasActionPerformed
+
+    private void uiEquipoLocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uiEquipoLocActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_uiEquipoLocActionPerformed
 
     /**
      * @param args the command line arguments

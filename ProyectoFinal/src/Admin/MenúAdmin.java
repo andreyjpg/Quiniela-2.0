@@ -110,7 +110,7 @@ public class MenúAdmin extends javax.swing.JFrame {
         labelMenuAdmin2.setText("¿Deseas salir?");
 
         uiUsuarioAdmin.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
-        uiUsuarioAdmin.setText("USER");
+        uiUsuarioAdmin.setText("jLabel2");
 
         javax.swing.GroupLayout FondoLayout = new javax.swing.GroupLayout(Fondo);
         Fondo.setLayout(FondoLayout);
@@ -122,19 +122,19 @@ public class MenúAdmin extends javax.swing.JFrame {
                     .addComponent(labelMenuAdmin)
                     .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(uiVerRanking, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(uiAgMarcadores, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
-                        .addComponent(uiAgPartidos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(uiAgPartidos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(uiAgMarcadores, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)))
                 .addGap(56, 56, 56)
                 .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(uiCerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(labelMenuAdmin2, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(uiCerrarSesion)
                     .addComponent(jLabel1)
-                    .addGroup(FondoLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(labelMenuAdmin1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(uiUsuarioAdmin)))
+                    .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(labelMenuAdmin2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(FondoLayout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addComponent(labelMenuAdmin1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(uiUsuarioAdmin))))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
         FondoLayout.setVerticalGroup(
