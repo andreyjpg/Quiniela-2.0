@@ -173,7 +173,7 @@ public class AgregarPremios_Admin extends javax.swing.JFrame {
     private void uiGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uiGuardarActionPerformed
         String Premio = uiPremio.getText();
         int valorPremio = Integer.parseInt(uiPuntajePremio.getText());
-        if (uiPremio.getText().isBlank() && (uiPuntajePremio.getText().isEmpty())) {
+        if (uiPremio.getText().isEmpty()&& (uiPuntajePremio.getText().isEmpty())) {
             JOptionPane.showMessageDialog(null, "Error - Favor digite un nombre de premio y su puntaje respectivo!");
         }else{
             datoPremios.setDescripcion(Premio);
