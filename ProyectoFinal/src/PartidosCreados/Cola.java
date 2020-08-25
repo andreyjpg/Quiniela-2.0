@@ -25,6 +25,7 @@ public class Cola {
     }
     
     public void encolar(Dato dato){
+        dato.setIdPartido(cantidadPartidos() + 1);
         
         NodoCola nuevoNodo = new NodoCola();
         nuevoNodo.setDato(dato);

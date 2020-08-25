@@ -18,7 +18,9 @@ public class ListaDobleEnlazada {
         return inicio == null;
     }
     
-    public void agregar(Dato dato){ 
+    public void agregar(Dato dato){
+        dato.setIdUsuario(contarElementos() + 1);
+        
         NodoLED nuevoNodo = new NodoLED();
         nuevoNodo.setDato(dato);
 
@@ -100,4 +102,22 @@ public class ListaDobleEnlazada {
         }
         return cont;
     }
+    
+    public void agregarPartidosXUsario(PartidosCreados.Dato partido, int contMarcadores, Estructuras.Estructuras objetoEstructuras){
+        if(!esVacia()){
+            NodoLED aux = inicio;
+            while(aux != null){
+                if(aux.getDato().isIsAdmin()){
+                    MarcadoresUsuarios.Dato nuevoPartido = new MarcadoresUsuarios.Dato();
+                    nuevoPartido.setIdUsuario(aux.getDato().getIdUsuario());
+                    nuevoPartido.setIdMarcador(contMarcadores + 1);
+                    nuevoPartido.setIdPartido(partido.getIdPartido());
+                    objetoEstructuras.getListaSimple_marcadoresUsuario().enlazar(nuevoPartido);
+
+                }
+            }
+        }
+        
+    }
+    
 }

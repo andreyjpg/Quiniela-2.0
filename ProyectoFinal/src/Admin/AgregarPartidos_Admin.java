@@ -202,16 +202,21 @@ public class AgregarPartidos_Admin extends javax.swing.JFrame {
     private void uiGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uiGuardarActionPerformed
         String equipoL = uiEquipoLoc.getText();
         String equipoV = uiEquipoVis.getText();
-        if(!equipoL.equals("") && equipoV.equals("")){
+        if(!equipoL.equals("") && !equipoV.equals("")){
+            PartidosCreados.Dato partido = new PartidosCreados.Dato(equipoL, equipoV);
             
+            estructurasDatosObject.getColaPartidos().encolar(partido);
+            JOptionPane.showMessageDialog(null, "Partido agregado");
+            partidosUsuarios(partido);
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese valores en las casillas");
         }
-
-        
     }//GEN-LAST:event_uiGuardarActionPerformed
 
     
-    private void partidosUsuarios(){
-        
+    private void partidosUsuarios(PartidosCreados.Dato partido){
+        int cont = estructurasDatosObject.getListaSimple_marcadoresUsuario().cuentaElementos();
+        estructurasDatosObject.getListaUsuarios().agregarPartidosXUsario(partido, cont, estructurasDatosObject);        
     }
     
     private void uiAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uiAtrasActionPerformed
