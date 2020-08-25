@@ -295,7 +295,6 @@ public class AgregarMarcador_Admin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void uiAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uiAtrasActionPerformed
-
         MenúAdmin atras = new MenúAdmin(estructurasDatosObject, usuarioActivo);
         atras.setVisible(true);
         this.setVisible(false);

@@ -28,12 +28,19 @@ public class Inicio extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         estructurasDatosObject = new Estructuras();
+        crearAdmin();
     }
     
     public Inicio(Estructuras objeto) {
         initComponents();
         setLocationRelativeTo(null);
         estructurasDatosObject = objeto;
+    }
+    
+    public void crearAdmin(){
+        Usuarios.Dato admin = new Usuarios.Dato("Admin@admin.com", "admin");
+        admin.setIsAdmin(true);
+        estructurasDatosObject.getListaUsuarios().agregar(admin);
     }
 
     /**

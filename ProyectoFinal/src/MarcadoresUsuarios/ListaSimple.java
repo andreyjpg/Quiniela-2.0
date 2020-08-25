@@ -35,4 +35,16 @@ public class ListaSimple {
             aux.setSiguiente(nuevoNodo);    
         }
     } 
+    
+    public int cuentaElementos(){
+        int cont = 0;
+            if(!esVacia()){
+                NodoLS aux = inicio;
+                while(aux != null){
+                    cont +=1;
+                    aux = aux.getSiguiente();
+                }
+            }
+        return cont;
+    }
 }

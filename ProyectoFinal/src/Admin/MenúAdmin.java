@@ -190,8 +190,8 @@ public class MenúAdmin extends javax.swing.JFrame {
     private void uiAgMarcadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uiAgMarcadoresActionPerformed
         // TODO add your handling code here:
         AgregarMarcador_Admin agregarMarc = new AgregarMarcador_Admin(estructurasDatosObject, usuarioActivo);
-        agregarMarc.setVisible(true);
         this.setVisible(false);
+        agregarMarc.setVisible(true);
     }//GEN-LAST:event_uiAgMarcadoresActionPerformed
 
     private void uiCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uiCerrarSesionActionPerformed

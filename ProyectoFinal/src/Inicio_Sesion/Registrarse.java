@@ -175,9 +175,8 @@ public class Registrarse extends javax.swing.JFrame {
         if(contraseña.equals(confContra)){
             if(!estructurasDatosObject.getListaUsuarios().BuscarElemento(correo)){
                 Usuarios.Dato nuevoUsuario = new Usuarios.Dato(correo, contraseña);
-                nuevoUsuario.setIdUsuario(estructurasDatosObject.getListaUsuarios().contarElementos() + 1);
                 estructurasDatosObject.getListaUsuarios().agregar(nuevoUsuario);
-                Inicio newWindow =new Inicio(estructurasDatosObject);
+                Inicio newWindow = new Inicio(estructurasDatosObject);
                 this.setVisible(false);
                 newWindow.setVisible(true);
             } else {

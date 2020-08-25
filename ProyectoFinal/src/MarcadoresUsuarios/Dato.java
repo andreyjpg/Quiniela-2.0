@@ -3,9 +3,7 @@ package MarcadoresUsuarios;
 
 
 public class Dato {
-    private int idMarcador;
-
-   
+    private int idMarcador;   
     private int idPartido;
     private int idUsuario;
     private int marcadorL;
