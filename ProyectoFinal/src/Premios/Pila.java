@@ -41,5 +41,19 @@ public class Pila {
         }
     }
     
+    public String tomarNodo(int númeroNodo){
+        String respuesta = "";
+        if(!esVacia()){
+            int i = 0; 
+            NodoPila aux = cima;
+            while(i < númeroNodo){
+                aux = aux.getSiguiente();
+                i+=1;
+            }
+            respuesta = aux.getDato().getDescripcion();
+        }
+       
+        return respuesta;
+    }
     
 }

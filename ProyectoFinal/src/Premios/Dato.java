@@ -11,8 +11,8 @@ public class Dato {
     private String descripcion;
     
     public Dato(String premio, int valorPremio){
-        idPremio = 0;
-        descripcion =""; 
+        idPremio = valorPremio;
+        descripcion =premio; 
     }
 
     public int getIdPremio() {

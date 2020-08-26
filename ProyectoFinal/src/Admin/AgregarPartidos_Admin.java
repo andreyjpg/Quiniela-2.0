@@ -207,6 +207,8 @@ public class AgregarPartidos_Admin extends javax.swing.JFrame {
             
             estructurasDatosObject.getColaPartidos().encolar(partido);
             JOptionPane.showMessageDialog(null, "Partido agregado");
+            uiEquipoVis.setText("");
+            uiEquipoLoc.setText("");
             partidosUsuarios(partido);
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese valores en las casillas");

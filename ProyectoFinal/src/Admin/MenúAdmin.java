@@ -49,6 +49,7 @@ public class MenúAdmin extends javax.swing.JFrame {
         labelMenuAdmin1 = new javax.swing.JLabel();
         labelMenuAdmin2 = new javax.swing.JLabel();
         uiUsuarioAdmin = new javax.swing.JLabel();
+        uiAgregarPremios = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,6 +113,16 @@ public class MenúAdmin extends javax.swing.JFrame {
         uiUsuarioAdmin.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
         uiUsuarioAdmin.setText("jLabel2");
 
+        uiAgregarPremios.setBackground(new java.awt.Color(0, 0, 0));
+        uiAgregarPremios.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
+        uiAgregarPremios.setForeground(new java.awt.Color(255, 255, 255));
+        uiAgregarPremios.setText("Agregar Premios");
+        uiAgregarPremios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uiAgregarPremiosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout FondoLayout = new javax.swing.GroupLayout(Fondo);
         Fondo.setLayout(FondoLayout);
         FondoLayout.setHorizontalGroup(
@@ -123,10 +134,10 @@ public class MenúAdmin extends javax.swing.JFrame {
                     .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(uiVerRanking, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(uiAgPartidos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(uiAgMarcadores, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)))
+                        .addComponent(uiAgMarcadores, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE))
+                    .addComponent(uiAgregarPremios, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(56, 56, 56)
                 .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(uiCerrarSesion)
                     .addComponent(jLabel1)
                     .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(labelMenuAdmin2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -134,7 +145,8 @@ public class MenúAdmin extends javax.swing.JFrame {
                             .addGap(10, 10, 10)
                             .addComponent(labelMenuAdmin1)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(uiUsuarioAdmin))))
+                            .addComponent(uiUsuarioAdmin)))
+                    .addComponent(uiCerrarSesion))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
         FondoLayout.setVerticalGroup(
@@ -149,7 +161,9 @@ public class MenúAdmin extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(uiAgMarcadores, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(21, 21, 21)
-                        .addComponent(uiVerRanking, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(uiVerRanking, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(uiAgregarPremios, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(FondoLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -159,9 +173,9 @@ public class MenúAdmin extends javax.swing.JFrame {
                             .addComponent(uiUsuarioAdmin))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(labelMenuAdmin2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(28, 28, 28)
                         .addComponent(uiCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -174,7 +188,7 @@ public class MenúAdmin extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Fondo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(Fondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -206,6 +220,12 @@ public class MenúAdmin extends javax.swing.JFrame {
         sigPantalla.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_uiVerRankingActionPerformed
+
+    private void uiAgregarPremiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uiAgregarPremiosActionPerformed
+        AgregarPremios_Admin sigPantalla = new AgregarPremios_Admin(estructurasDatosObject, usuarioActivo);
+        sigPantalla.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_uiAgregarPremiosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -250,6 +270,7 @@ public class MenúAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel labelMenuAdmin2;
     private javax.swing.JButton uiAgMarcadores;
     private javax.swing.JButton uiAgPartidos;
+    private javax.swing.JButton uiAgregarPremios;
     private javax.swing.JButton uiCerrarSesion;
     private javax.swing.JLabel uiUsuarioAdmin;
     private javax.swing.JButton uiVerRanking;

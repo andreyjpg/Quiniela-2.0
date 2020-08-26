@@ -27,6 +27,10 @@ public class ListaDobleCircular {
         if(esVacia()){
             inicio = nuevo;
             fin = nuevo;
+            inicio.setAnterior(fin);
+            inicio.setSiguiente(fin);
+            fin.setAnterior(inicio);
+            fin.setSiguiente(inicio);
         } else if(dato.getPuntaje()< inicio.getDato().getPuntaje()){
             nuevo.setSiguiente(inicio);
             inicio = nuevo;
@@ -130,9 +134,14 @@ public class ListaDobleCircular {
     public DefaultTableModel listaATabla(DefaultTableModel estructura, int fila, Estructuras.Estructuras datos){
         if(!esVacia()){
             NodoLCD aux = fin;
+            estructura.insertRow(fila, new Object[]{ fila + 1, aux.getDato().getNombre(), 
+                    aux.getDato().getPuntaje(), datos.getPilaPremios().tomarNodo(fila)});
+                
+            fila += 1;
+            aux = aux.getAnterior();
             while(aux != fin){
                 estructura.insertRow(fila, new Object[]{ fila + 1, aux.getDato().getNombre(), 
-                    aux.getDato().getPuntaje(), });
+                    aux.getDato().getPuntaje(), datos.getPilaPremios().tomarNodo(fila)});
                 
                 fila += 1;
                 aux = aux.getAnterior();
