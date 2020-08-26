@@ -11,6 +11,7 @@ temas
 */
 package Posición;
 
+import Premios.Pila;
 import Admin.MenúAdmin;
 import Estructuras.Estructuras;
 import Participante.MenuParticipante;

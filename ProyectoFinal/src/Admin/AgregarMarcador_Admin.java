@@ -30,125 +30,48 @@ public class AgregarMarcador_Admin extends javax.swing.JFrame {
      */
     public AgregarMarcador_Admin() {
         initComponents();
-        CargarTabla();
     }
 
-        public AgregarMarcador_Admin(Estructuras objeto, Usuarios.Dato usuarioActivo) {
+    public AgregarMarcador_Admin(Estructuras objeto, Usuarios.Dato usuarioActivo) {
         initComponents();
         this.usuarioActivo = usuarioActivo;
         this.estructurasDatosObject = objeto;
         setLocationRelativeTo(null);
-        CargarTabla();
+        mostrarTablaMarcadores();
+        mostrarTablaFinalizados();
     }
     
     
-    private void UpdateTable(){
-        
+    private void ActualizarTabla(){
+        estructurasDatosObject.getColaPartidos().desencolar(estructurasDatosObject);
     }
 
-    private void CargarTabla() {
-        
-    }
-
-    private void RefrescarTabla() {
+    private void mostrarTablaMarcadores() {
         DefaultTableModel estructura = (DefaultTableModel) uiTablaMarcadores.getModel();
         //Limpia Jtable
         estructura.setRowCount(0);
-        int fila = 0;
-            /*while (true) {
-                estructura.insertRow(fila, new Object[]{resultados.getBoolean("iniciado"), resultados.getBoolean("finalizado"), resultados.getString("equipoL"), resultados.getString("equipoV"), resultados.getString("marcadorV"), resultados.getString("marcadorL"), resultados.getInt("idPartido")});
-                fila++;
-            }
-            uiTablaMarcadores.getModel();
-            System.out.println(e);
-*/
+            
+        estructura = estructurasDatosObject.getColaPartidos().ColaATabla(estructura, 0);
+        uiTablaMarcadores.getModel();
+    }
+    
+    private void mostrarTablaFinalizados() {
+        DefaultTableModel estructura = (DefaultTableModel) uiTablaFinalizados.getModel();
+        //Limpia Jtable
+        estructura.setRowCount(0);
+            
+        estructura = estructurasDatosObject.getListaCS_partidosFinalizados().ListaATabla(estructura, 0);
+        uiTablaFinalizados.getModel();
     }
     
     private void sumaPuntos(){
-            TableModel tabla = uiTablaMarcadores.getModel();
-            PuntosUsuario = new LinkedList<>();
             
-            for(int row = 0; row < tabla.getRowCount(); row ++){ // recorrer los partidos
-                if(Boolean.parseBoolean(String.valueOf(tabla.getValueAt(row, 1))) ||Boolean.parseBoolean(String.valueOf(tabla.getValueAt(row, 0)))){ // si el partido esta finalizado o iniciado entonces
-                    int idPT = Integer.parseInt(String.valueOf(tabla.getValueAt(row, 6))); // tomar valor de idPartido de la tabla
-                    /*
-                    while(marcadores.next()){ // buscar todos los marccadores ingresados
-                        int puntos = 0;
-                        int idPM = marcadores.getInt("idPartido"); //tomar el valor idPartido de los marcadores
-
-                        if(idPM == idPT){ // si el idPartido tanto de marcadores como de la tabla es igual entonces
-                            int mL = marcadores.getInt("marcadorL"); 
-                            int mV = marcadores.getInt("marcadorV"); // marcador visitante y Local de la tabla marcadores
-
-                            int tML = Integer.parseInt(String.valueOf(tabla.getValueAt(row, 4)));
-                            int tMV = Integer.parseInt(String.valueOf(tabla.getValueAt(row, 5))); // marcadores en la tabla del Frame
-
-                            boolean d1 = mL > mV && tML > tMV; // Si el usuario acertó que el ganador fue el local
-                            boolean d2 = mL < mV && tML < tMV; // Si el usuario acertó que el visitante fue el ganador
-                            boolean d3 = mL == mV && tML == tMV; // si acertó que habia un empate
-
-                            if (mL == tML && mV == tMV){ // si los marcadores del usuario son iguales a los de la tabla del admin entonces
-                                PreparedStatement ps = cn.prepareStatement(updateMarcador);
-                                ps.setBoolean(1, Boolean.parseBoolean(String.valueOf(tabla.getValueAt(row, 0))));
-                                ps.setInt(2, 3);
-                                ps.setInt(3, marcadores.getInt("idUsuario"));
-                                ps.setInt(4, marcadores.getInt("idPartido"));   
-                                ps.executeUpdate();
-                                ps.close();
-                                PuntosUsuario.add(new Marcadores(marcadores.getInt("idUsuario"), 3));
-                            } else if(d1 || d2 || d3) {
-                                PreparedStatement ps = cn.prepareStatement(updateMarcador);
-                                ps.setBoolean(1, Boolean.parseBoolean(String.valueOf(tabla.getValueAt(row, 0))));
-                                ps.setInt(2, 1);
-                                ps.setInt(3, marcadores.getInt("idUsuario"));
-                                ps.setInt(4, marcadores.getInt("idPartido"));  
-                                ps.executeUpdate();
-                                ps.close();
-                                PuntosUsuario.add(new Marcadores(marcadores.getInt("idUsuario"), 1));
-                            } else {
-                                PreparedStatement ps = cn.prepareStatement(updateMarcador);
-                                ps.setBoolean(1, Boolean.parseBoolean(String.valueOf(tabla.getValueAt(row, 0))));
-                                ps.setInt(2, 0);
-                                ps.setInt(3, marcadores.getInt("idUsuario"));
-                                ps.setInt(4, marcadores.getInt("idPartido"));  
-                                ps.executeUpdate();
-                                ps.close();
-                                PuntosUsuario.add(new Marcadores(marcadores.getInt("idUsuario"), 0));
-                            }
-                            
-                        }
-                    }*/
-                }
-                
-            sumaUsuario();
-        }   
+            estructurasDatosObject.getListaCS_partidosFinalizados().sumaPuntos(estructurasDatosObject);
+                    
+            estructurasDatosObject.getListaSimple_marcadoresUsuario().crearTablaPosiciones(estructurasDatosObject);
     }
     
-    private void sumaUsuario(){
-      /*
-            int puntos;
-            try{
-                
-                while(usuarios.next()){
-                    puntos  = 0;
-                    for (Marcadores obj : PuntosUsuario){
-                        if(obj.getIdUsuario().equals(usuarios.getInt("idUsuario"))){
-                            puntos += obj.getPuntos();
-                        }
-                    }
-                    PreparedStatement ps = cn.prepareStatement(UpdateUsuario);
-                    ps.setInt(1, puntos);
-                    ps.setInt(2, usuarios.getInt("idUsuario"));  
-                    ps.executeUpdate();
-                    ps.close();
-
-                }
-                usuarios.close();
-            } catch(SQLException e){
-                System.out.println(e);
-            }
-            */
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -163,11 +86,13 @@ public class AgregarMarcador_Admin extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         uiAtras = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        uiTablaMarcadores = new javax.swing.JTable();
-        uiGuardarCambios = new javax.swing.JButton();
-        uiCargarResul = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        uiTablaFinalizados = new javax.swing.JTable();
+        uiExtraerPartido = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        uiTablaMarcadores = new javax.swing.JTable();
+        uiGuardar = new javax.swing.JButton();
 
         labelAgregarPartidos.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         labelAgregarPartidos.setText("Partidos Registrados");
@@ -186,20 +111,66 @@ public class AgregarMarcador_Admin extends javax.swing.JFrame {
             }
         });
 
+        uiTablaFinalizados.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
+        uiTablaFinalizados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID Partido", "Equipo Local", "Equipo Visitante", "Marcador Local", "Marcador Visitante"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        uiTablaFinalizados.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        uiTablaFinalizados.setName(""); // NOI18N
+        jScrollPane1.setViewportView(uiTablaFinalizados);
+
+        uiExtraerPartido.setBackground(new java.awt.Color(0, 0, 0));
+        uiExtraerPartido.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
+        uiExtraerPartido.setForeground(new java.awt.Color(255, 255, 255));
+        uiExtraerPartido.setText("Extraer partido finalizado");
+        uiExtraerPartido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uiExtraerPartidoActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Partidos Finalizados");
+
+        jLabel3.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Agregar Marcadores");
+
         uiTablaMarcadores.setFont(new java.awt.Font("Agency FB", 1, 14)); // NOI18N
         uiTablaMarcadores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Iniciado", "Finalizado", "Equipo Local", "Equipo Visitante", "Marcador Local", "Marcador Visitante", "idPartido"
+                "ID Partido", "Equipo Local", "Equipo Visitante", "Marcador Local", "Marcador Visitante"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                true, true, false, false, true, true, false
+                false, false, false, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -212,35 +183,17 @@ public class AgregarMarcador_Admin extends javax.swing.JFrame {
         });
         uiTablaMarcadores.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         uiTablaMarcadores.setName(""); // NOI18N
-        jScrollPane1.setViewportView(uiTablaMarcadores);
+        jScrollPane2.setViewportView(uiTablaMarcadores);
 
-        uiGuardarCambios.setBackground(new java.awt.Color(0, 0, 0));
-        uiGuardarCambios.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
-        uiGuardarCambios.setForeground(new java.awt.Color(255, 255, 255));
-        uiGuardarCambios.setText("Guardar Cambios");
-        uiGuardarCambios.addActionListener(new java.awt.event.ActionListener() {
+        uiGuardar.setBackground(new java.awt.Color(0, 0, 0));
+        uiGuardar.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
+        uiGuardar.setForeground(new java.awt.Color(255, 255, 255));
+        uiGuardar.setText("Guardar cambios");
+        uiGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                uiGuardarCambiosActionPerformed(evt);
+                uiGuardarActionPerformed(evt);
             }
         });
-
-        uiCargarResul.setBackground(new java.awt.Color(0, 0, 0));
-        uiCargarResul.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
-        uiCargarResul.setForeground(new java.awt.Color(255, 255, 255));
-        uiCargarResul.setText("Refrescar tabla");
-        uiCargarResul.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                uiCargarResulActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("¿Todo listo?");
-
-        jLabel2.setFont(new java.awt.Font("Agency FB", 1, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Agregar Marcadores");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -249,35 +202,59 @@ public class AgregarMarcador_Admin extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 256, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(uiGuardar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(uiExtraerPartido)
+                                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(252, 252, 252))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(uiAtras)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addGap(92, 92, 92)
-                        .addComponent(uiCargarResul))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE))
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(28, 28, 28)
-                .addComponent(uiGuardarCambios))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(uiAtras)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addContainerGap(260, Short.MAX_VALUE)
+                    .addComponent(jLabel3)
+                    .addGap(245, 245, 245)))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 728, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(uiAtras)
+                .addGap(251, 251, 251)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(uiCargarResul)
-                    .addComponent(jLabel2)
-                    .addComponent(uiAtras))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(uiGuardarCambios))
-                .addContainerGap(43, Short.MAX_VALUE))
+                    .addComponent(uiExtraerPartido)
+                    .addComponent(uiGuardar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addGap(4, 4, 4)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(38, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(23, 23, 23)
+                    .addComponent(jLabel3)
+                    .addContainerGap(596, Short.MAX_VALUE)))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(78, 78, 78)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(380, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -288,7 +265,7 @@ public class AgregarMarcador_Admin extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -301,18 +278,25 @@ public class AgregarMarcador_Admin extends javax.swing.JFrame {
         
     }//GEN-LAST:event_uiAtrasActionPerformed
 
-    private void uiGuardarCambiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uiGuardarCambiosActionPerformed
-        // TODO add your handling code here:
-        UpdateTable();
+    private void uiExtraerPartidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uiExtraerPartidoActionPerformed
+        ActualizarTabla(); // metodo para pasar de Cola de partidos a Lista circular simple
+        mostrarTablaMarcadores();
+        mostrarTablaFinalizados();
         sumaPuntos();
         JOptionPane.showMessageDialog(null, "¡Valores Actualizados exitosamente!");
-    }//GEN-LAST:event_uiGuardarCambiosActionPerformed
+    }//GEN-LAST:event_uiExtraerPartidoActionPerformed
 
-    private void uiCargarResulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uiCargarResulActionPerformed
-        JOptionPane.showMessageDialog(null, "Tabla Actualizada Correctamente");
-        CargarTabla();
-    }//GEN-LAST:event_uiCargarResulActionPerformed
-
+    private void uiGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uiGuardarActionPerformed
+        guardarCambios();
+    }//GEN-LAST:event_uiGuardarActionPerformed
+    
+    public void guardarCambios(){
+        TableModel tabla = uiTablaMarcadores.getModel();
+        int idPartido = Integer.parseInt(String.valueOf(tabla.getValueAt(0, 0)));
+        int marcadorL = Integer.parseInt(String.valueOf(tabla.getValueAt(0, 3)));
+        int marcadorV = Integer.parseInt(String.valueOf(tabla.getValueAt(0, 4)));
+        estructurasDatosObject.getColaPartidos().guardarCambios(marcadorL, marcadorV);
+    }
     /**
      * @param args the command line arguments
      */
@@ -352,14 +336,16 @@ public class AgregarMarcador_Admin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel labelAgregarPartidos;
     private javax.swing.JButton uiAtras;
-    private javax.swing.JButton uiCargarResul;
-    private javax.swing.JButton uiGuardarCambios;
+    private javax.swing.JButton uiExtraerPartido;
+    private javax.swing.JButton uiGuardar;
+    private javax.swing.JTable uiTablaFinalizados;
     private javax.swing.JTable uiTablaMarcadores;
     // End of variables declaration//GEN-END:variables
 

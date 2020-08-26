@@ -107,7 +107,7 @@ public class ListaDobleEnlazada {
         if(!esVacia()){
             NodoLED aux = inicio;
             while(aux != null){
-                if(aux.getDato().isIsAdmin()){
+                if(!aux.getDato().isIsAdmin()){
                     MarcadoresUsuarios.Dato nuevoPartido = new MarcadoresUsuarios.Dato();
                     nuevoPartido.setIdUsuario(aux.getDato().getIdUsuario());
                     nuevoPartido.setIdMarcador(contMarcadores + 1);
@@ -115,9 +115,27 @@ public class ListaDobleEnlazada {
                     objetoEstructuras.getListaSimple_marcadoresUsuario().enlazar(nuevoPartido);
 
                 }
+                aux = aux.getSiguiente();
             }
         }
         
+    }
+    
+    public String obtenerCorreoUsuario(int id){
+        String resultado = "";
+        if(!esVacia()){
+            NodoLED aux = inicio;
+            while(aux != null){
+                if(id == aux.getDato().getIdUsuario()){
+                    resultado = aux.getDato().getCorreo();
+                    aux = null;
+                } else {
+                   aux = aux.getSiguiente(); 
+                }
+                
+            }
+        }
+        return resultado;
     }
     
 }

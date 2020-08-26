@@ -6,6 +6,9 @@
 package PartidosFinalizados;
 
 import javax.swing.JOptionPane;
+import PartidosCreados.Dato;
+import Estructuras.Estructuras;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -64,5 +67,39 @@ public class ListaCircularSimple {
             }
         }
         return cant;
+    }
+    
+    public DefaultTableModel ListaATabla(DefaultTableModel estructura, int fila){
+        if(!esVacia()){
+            Nodo aux = inicio;
+            estructura.insertRow(fila, new Object[]{ aux.getDato().getIdPartido(),
+            aux.getDato().getEquipoL(),aux.getDato().getEquipoV(), aux.getDato().getMarcadorL(), 
+            aux.getDato().getMarcadorV()});
+
+            fila += 1;
+            aux = aux.getSiguiente();
+            while(aux != inicio){
+                estructura.insertRow(fila, new Object[]{ aux.getDato().getIdPartido(),
+                aux.getDato().getEquipoL(),aux.getDato().getEquipoV(), aux.getDato().getMarcadorL(), 
+                aux.getDato().getMarcadorV()});
+                
+                fila += 1;
+                aux = aux.getSiguiente();
+            }
+        } 
+        
+        return estructura;
+    }
+    
+    public void sumaPuntos(Estructuras estructuras){
+        if(!esVacia()){
+            Nodo aux = inicio;
+            estructuras.getListaSimple_marcadoresUsuario().verificarMarcadorFinal(aux.getDato());
+            aux = aux.getSiguiente();
+            while(aux != inicio){
+                estructuras.getListaSimple_marcadoresUsuario().verificarMarcadorFinal(aux.getDato());
+                aux = aux.getSiguiente();
+            }
+        }
     }
 }

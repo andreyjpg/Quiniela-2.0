@@ -12,7 +12,7 @@ public class AgregarPremios_Admin extends javax.swing.JFrame {
     private Usuarios.Dato usuarioActivo;
     private Estructuras estructurasDatosObject;
     private Premios.Dato datoPremios;
-    private Premios.ListaDobleCircular accionPremios;
+    private Posición.ListaDobleCircular accionPremios;
     /**
      * Creates new form AgregarPremios_Admin
      */
@@ -178,7 +178,7 @@ public class AgregarPremios_Admin extends javax.swing.JFrame {
         }else{
             datoPremios.setDescripcion(Premio);
             datoPremios.setIdPremio(valorPremio);
-            accionPremios.agregar(datoPremios);
+            //accionPremios.agregar(datoPremios);
         }
     }//GEN-LAST:event_uiGuardarActionPerformed
 

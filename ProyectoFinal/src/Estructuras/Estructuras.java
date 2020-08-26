@@ -10,8 +10,8 @@ package Estructuras;
 import MarcadoresUsuarios.ListaSimple;
 import PartidosCreados.Cola;
 import PartidosFinalizados.ListaCircularSimple;
-import Posición.Pila;
-import Premios.ListaDobleCircular;
+import Premios.Pila;
+import Posición.ListaDobleCircular;
 import Usuarios.ListaDobleEnlazada;
 
 public class Estructuras {
@@ -19,16 +19,16 @@ public class Estructuras {
     private PartidosCreados.Cola colaPartidos;
     private PartidosFinalizados.ListaCircularSimple listaCS_partidosFinalizados;
     private MarcadoresUsuarios.ListaSimple listaSimple_marcadoresUsuario;
-    private Posición.Pila pilaPosiciones;
-    private Premios.ListaDobleCircular listaDC_premios;
+    private Premios.Pila pilaPremios;
+    private Posición.ListaDobleCircular listaDC_Posiciones;
     
     public Estructuras(){
         listaUsuarios = new Usuarios.ListaDobleEnlazada();
         colaPartidos = new PartidosCreados.Cola();
         listaCS_partidosFinalizados = new PartidosFinalizados.ListaCircularSimple();
         listaSimple_marcadoresUsuario = new MarcadoresUsuarios.ListaSimple();
-        pilaPosiciones = new Posición.Pila();
-        listaDC_premios = new Premios.ListaDobleCircular();
+        listaDC_Posiciones = new Posición.ListaDobleCircular();
+        pilaPremios = new Premios.Pila();
     }
 
     public ListaDobleEnlazada getListaUsuarios() {
@@ -47,13 +47,13 @@ public class Estructuras {
         return listaSimple_marcadoresUsuario;
     }
 
-    public Pila getPilaPosiciones() {
-        return pilaPosiciones;
+    public Pila getPilaPremios() {
+        return pilaPremios;
     }
 
-    public ListaDobleCircular getListaDC_premios() {
-        return listaDC_premios;
+    public ListaDobleCircular getListaDC_Posiciones() {
+        return listaDC_Posiciones;
     }
-    
+
     
 }

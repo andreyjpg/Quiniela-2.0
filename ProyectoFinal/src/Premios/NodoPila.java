@@ -1,4 +1,6 @@
-package Posición;
+package Premios;
+
+import Posición.Dato;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

@@ -47,4 +47,39 @@ public class ListaSimple {
             }
         return cont;
     }
+    
+    public void verificarMarcadorFinal(PartidosCreados.Dato partido){
+        if(!esVacia()){
+            NodoLS aux = inicio;
+            while(aux != null){
+                if(partido.getIdPartido() == aux.getDato().getIdPartido()){
+                    if(partido.getMarcadorL() == aux.getDato().getMarcadorL()
+                            && partido.getMarcadorV() == aux.getDato().getMarcadorV()){
+                        aux.getDato().setPuntosObtenidos(3);
+                    } else if(partido.getMarcadorL() > partido.getMarcadorV()
+                            && aux.getDato().getMarcadorL() > aux.getDato().getMarcadorV()){
+                        aux.getDato().setPuntosObtenidos(1);
+                    } else if(partido.getMarcadorL() < partido.getMarcadorV()
+                            && aux.getDato().getMarcadorL() < aux.getDato().getMarcadorV()){
+                        aux.getDato().setPuntosObtenidos(1);
+                    } else if(partido.getMarcadorL() == partido.getMarcadorV()
+                            && aux.getDato().getMarcadorL() == aux.getDato().getMarcadorV()){
+                        aux.getDato().setPuntosObtenidos(1);
+                    } else {
+                        aux.getDato().setPuntosObtenidos(0);
+                    }
+                }
+                aux = aux.getSiguiente();
+            }
+        }
+    }
+    
+    public void crearTablaPosiciones(Estructuras.Estructuras estructuras){
+        if(!esVacia()){
+            NodoLS aux = inicio;
+            while(aux != null){
+                estructuras.getListaDC_Posiciones().sumarPuntos(aux.getDato(), estructuras);
+            }
+        }
+    }
 }

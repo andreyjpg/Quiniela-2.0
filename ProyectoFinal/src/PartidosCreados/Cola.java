@@ -6,6 +6,8 @@
 package PartidosCreados;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import Estructuras.Estructuras;
 
 /**
  *
@@ -39,14 +41,14 @@ public class Cola {
         }
     }
     
-    public void desencolar(String elementosEliminados) {
+    public void desencolar(Estructuras estructuras) {
         if(!esVacia()){
+            estructuras.getListaCS_partidosFinalizados().agregar(frente.getDato());
             frente = frente.getSiguiente();
             
-            JOptionPane.showMessageDialog(null, "El elemento fue eliminado");
             
         } else {
-           JOptionPane.showMessageDialog(null, "No se puede desencolar, Pila vacia");
+           JOptionPane.showMessageDialog(null, "No se puede desencolar, Cola vacia");
         }
     }
     
@@ -61,4 +63,29 @@ public class Cola {
         }
         return count;
     }
+    
+    public DefaultTableModel ColaATabla(DefaultTableModel estructura, int fila){
+        if(!esVacia()){
+            NodoCola aux = frente;
+            while(aux != null){
+                estructura.insertRow(fila, new Object[]{ aux.getDato().getIdPartido(),
+                aux.getDato().getEquipoL(),aux.getDato().getEquipoV(), aux.getDato().getMarcadorL(), 
+                aux.getDato().getMarcadorV()});
+                
+                fila += 1;
+                aux = aux.getSiguiente();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "La Cola de partidos se encuentra vacía");
+        }
+        
+        return estructura;
+    }
+    
+    public void guardarCambios(int marcadorL, int marcadorV){
+        frente.getDato().setMarcadorL(marcadorL);
+        frente.getDato().setMarcadorV(marcadorV);
+        
+    }
+    
 }

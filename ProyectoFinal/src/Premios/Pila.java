@@ -2,8 +2,10 @@
     Andrey Pérez Granados
     David Fallas Morales
 */
-package Posición;
+package Premios;
 
+import Posición.Dato;
+import Premios.NodoPila;
 import javax.swing.JOptionPane;
 
 
