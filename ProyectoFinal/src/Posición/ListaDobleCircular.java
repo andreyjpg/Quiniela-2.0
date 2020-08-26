@@ -6,6 +6,7 @@
 package Posición;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class ListaDobleCircular {
     private NodoLCD inicio;
@@ -101,6 +102,7 @@ public class ListaDobleCircular {
                     aux.getDato().setPuntaje(nuevoPuntaje);
                     ordenar(aux);
                 }
+                aux = aux.getSiguiente();
             }
 
         } else {
@@ -115,7 +117,7 @@ public class ListaDobleCircular {
     
     public void ordenar(NodoLCD aux){
         NodoLCD datoActualizado = aux;
-        while(aux.getSiguiente().getDato().getPuntaje()< aux.getDato().getPuntaje()){
+        while(aux.getSiguiente().getDato().getPuntaje()< datoActualizado.getDato().getPuntaje()){
             aux = aux.getSiguiente();
         }
         datoActualizado.setSiguiente(aux.getSiguiente());
@@ -124,4 +126,22 @@ public class ListaDobleCircular {
         aux.getSiguiente().setAnterior(datoActualizado);
         
     }
+    
+    public DefaultTableModel listaATabla(DefaultTableModel estructura, int fila, Estructuras.Estructuras datos){
+        if(!esVacia()){
+            NodoLCD aux = fin;
+            while(aux != fin){
+                estructura.insertRow(fila, new Object[]{ fila + 1, aux.getDato().getNombre(), 
+                    aux.getDato().getPuntaje(), });
+                
+                fila += 1;
+                aux = aux.getAnterior();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "La lista de tabla de posiciones está vacía");
+        }
+        
+        return estructura;
+    }
+    
 }

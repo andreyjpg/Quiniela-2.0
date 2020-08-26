@@ -79,6 +79,7 @@ public class ListaSimple {
             NodoLS aux = inicio;
             while(aux != null){
                 estructuras.getListaDC_Posiciones().sumarPuntos(aux.getDato(), estructuras);
+                aux = aux.getSiguiente();
             }
         }
     }
