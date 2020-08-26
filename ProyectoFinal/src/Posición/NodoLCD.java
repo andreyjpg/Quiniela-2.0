@@ -1,4 +1,7 @@
-
+/*Integrantes 
+    Andrey Pérez Granados
+    David Fallas Morales
+ */
 package Posición;
 
 //NodoLCD = Nodo Lista Circular Doblemente Enlazada
