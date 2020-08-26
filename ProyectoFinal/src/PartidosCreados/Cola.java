@@ -56,7 +56,7 @@ public class Cola {
         int count = 0;
         if(!esVacia()){
             NodoCola aux = frente;
-            while(frente != null){
+            while(aux != null){
                 count ++;
                 aux = aux.getSiguiente();
             }
@@ -82,9 +82,20 @@ public class Cola {
         return estructura;
     }
     
-    public void guardarCambios(int marcadorL, int marcadorV){
-        frente.getDato().setMarcadorL(marcadorL);
-        frente.getDato().setMarcadorV(marcadorV);
+    public void guardarCambios(int marcadorL, int marcadorV, int idPartido){
+        if(!esVacia()){
+            NodoCola aux =frente;
+            while(aux != null){
+                if(aux.getDato().getIdPartido() == idPartido){
+                  aux.getDato().setMarcadorL(marcadorL);
+                  aux.getDato().setMarcadorV(marcadorV);
+                } 
+                aux = aux.getSiguiente();
+            }
+            
+            
+        }
+        
         
     }
     

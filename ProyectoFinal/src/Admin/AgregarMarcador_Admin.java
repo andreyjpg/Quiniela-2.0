@@ -293,10 +293,13 @@ public class AgregarMarcador_Admin extends javax.swing.JFrame {
     
     public void guardarCambios(){
         TableModel tabla = uiTablaMarcadores.getModel();
-        int idPartido = Integer.parseInt(String.valueOf(tabla.getValueAt(0, 0)));
-        int marcadorL = Integer.parseInt(String.valueOf(tabla.getValueAt(0, 3)));
-        int marcadorV = Integer.parseInt(String.valueOf(tabla.getValueAt(0, 4)));
-        estructurasDatosObject.getColaPartidos().guardarCambios(marcadorL, marcadorV);
+        for(int i = 0; i<uiTablaMarcadores.getRowCount(); i++){
+            int idPartido = Integer.parseInt(String.valueOf(tabla.getValueAt(i, 0)));
+            int marcadorL = Integer.parseInt(String.valueOf(tabla.getValueAt(i, 3)));
+            int marcadorV = Integer.parseInt(String.valueOf(tabla.getValueAt(i, 4)));
+            estructurasDatosObject.getColaPartidos().guardarCambios(marcadorL, marcadorV, idPartido);
+        }
+        
     }
     /**
      * @param args the command line arguments
