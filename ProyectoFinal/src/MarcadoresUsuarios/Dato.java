@@ -1,19 +1,26 @@
-
+/*Integrantes 
+    Andrey Pérez Granados
+    David Fallas Morales
+ */
 package MarcadoresUsuarios;
 
 
 public class Dato {
     private int idMarcador;   
     private int idPartido;
+    private String equipoL;
+    private String equipoV;
     private int idUsuario;
     private int marcadorL;
     private int marcadorV;
     private int PuntosObtenidos;
     
-    public Dato() {
+    public Dato(String local, String visitante) {
         idMarcador = 0;
         idPartido = 0;
         idUsuario = 0;
+        equipoL = local;
+        equipoV = visitante;
         marcadorL = 0;
         marcadorV = 0;
         PuntosObtenidos = 0; 
@@ -29,7 +36,7 @@ public class Dato {
     public int getIdPartido() {
         return idPartido;
     }
-
+    
     public void setIdPartido(int idPartido) {
         this.idPartido = idPartido;
     }
@@ -65,6 +72,21 @@ public class Dato {
     public void setPuntosObtenidos(int PuntosObtenidos) {
         this.PuntosObtenidos = PuntosObtenidos;
     }
-    
+
+    public String getEquipoL() {
+        return equipoL;
+    }
+
+    public void setEquipoL(String equipoL) {
+        this.equipoL = equipoL;
+    }
+
+    public String getEquipoV() {
+        return equipoV;
+    }
+
+    public void setEquipoV(String equipoV) {
+        this.equipoV = equipoV;
+    }    
     
 }

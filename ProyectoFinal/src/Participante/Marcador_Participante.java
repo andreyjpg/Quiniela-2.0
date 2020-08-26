@@ -1,16 +1,8 @@
 /*Integrantes 
     Andrey Pérez Granados
     David Fallas Morales
-    Ericson Tames Quesada  
-
-temas
-    Base de datos: mysql
-    SWING GUI
-    Colecciones
-    Excepciones
-*/
+ */
 package Participante;
-
 
 import Estructuras.Estructuras;
 import Exceptions.PartidoIniciadoException;
@@ -25,45 +17,44 @@ public class Marcador_Participante extends javax.swing.JFrame {
     DefaultTableModel estructura;
     private Usuarios.Dato usuarioActivo;
     private Estructuras estructurasDatosObject;
+
     /**
      * Creates new form Marcador_Participante
      */
-     public Marcador_Participante(Estructuras objeto, Usuarios.Dato usuarioActivo){
+    public Marcador_Participante(Estructuras objeto, Usuarios.Dato usuarioActivo) {
         initComponents();
         this.usuarioActivo = usuarioActivo;
-        Marcadorusuario();
-        setLocationRelativeTo(null);  
-        
+        //Marcadorusuario();
+        RefrescarTabla();
+        setLocationRelativeTo(null);
+
     }
-     public Marcador_Participante() {
+
+    public Marcador_Participante() {
         initComponents();
-        
+
     }
-  
-     private void Marcadorusuario() {
-        
-    }
-   
+
 
     private void RefrescarTabla() {
-        DefaultTableModel estructura = (DefaultTableModel) TablaMarcador.getModel();
+        DefaultTableModel estructura = (DefaultTableModel) uiTablaMarcador.getModel();
         //Limpia Jtable
         estructura.setRowCount(0);
-        int fila = 0;
-            while (true) {
-                //estructura.insertRow(fila, new Object[]{resultados.getBoolean("iniciado"), resultados.getString("equipol"), resultados.getString("marcadorl"),resultados.getString("equipov"), resultados.getString("marcadorv"),resultados.getInt("idPartido"), resultados.getInt("puntosObtenidos")});
-                fila++;
-            }
-
-
-    }
-      
-      private void UpdateTable() throws PartidoIniciadoException{
         
-                             
-       
+        estructura = estructurasDatosObject.getListaSimple_marcadoresUsuario().ListaESATabla(estructura,0);
+        uiTablaMarcador.getModel();
+
     }
-      
+
+    private void UpdateTable() throws PartidoIniciadoException {
+        TableModel tablaParticipante = uiTablaMarcador.getModel();
+        for (int i = 0; i < uiTablaMarcador.getRowCount(); i++) {
+            int idPartidoPart = Integer.parseInt(String.valueOf(tablaParticipante.getValueAt(i, 0)));
+            int marcadorLPart = Integer.parseInt(String.valueOf(tablaParticipante.getValueAt(i, 3)));
+            int marcardorVPart = Integer.parseInt(String.valueOf(tablaParticipante.getValueAt(i, 5)));
+            estructurasDatosObject.getListaSimple_marcadoresUsuario().guardarCambios(marcadorLPart, marcardorVPart, idPartidoPart, usuarioActivo.getIdUsuario()));
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -77,7 +68,7 @@ public class Marcador_Participante extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         atras = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        TablaMarcador = new javax.swing.JTable();
+        uiTablaMarcador = new javax.swing.JTable();
         Guardar = new javax.swing.JButton();
         cargar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -98,7 +89,7 @@ public class Marcador_Participante extends javax.swing.JFrame {
             }
         });
 
-        TablaMarcador.setModel(new javax.swing.table.DefaultTableModel(
+        uiTablaMarcador.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -121,8 +112,8 @@ public class Marcador_Participante extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        TablaMarcador.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(TablaMarcador);
+        uiTablaMarcador.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(uiTablaMarcador);
 
         Guardar.setBackground(new java.awt.Color(0, 0, 0));
         Guardar.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
@@ -218,28 +209,27 @@ public class Marcador_Participante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasActionPerformed
-        
+
         MenuParticipante atras = new MenuParticipante(estructurasDatosObject, usuarioActivo);
         atras.setVisible(true);
         this.setVisible(false);
-        
+
     }//GEN-LAST:event_atrasActionPerformed
 
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
-        
-        
+
         try {
             UpdateTable();
             JOptionPane.showMessageDialog(null, "Actualizacion completa");
         } catch (PartidoIniciadoException ex) {
-           JOptionPane.showMessageDialog(null, ex);
+            JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_GuardarActionPerformed
 
     private void cargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargarActionPerformed
-        
-        Marcadorusuario();
-        
+
+        RefrescarTabla();
+        JOptionPane.showMessageDialog(null, "Tabla refrescada exitosamente!");
     }//GEN-LAST:event_cargarActionPerformed
 
     /**
@@ -280,7 +270,6 @@ public class Marcador_Participante extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Guardar;
-    private javax.swing.JTable TablaMarcador;
     private javax.swing.JButton atras;
     private javax.swing.JButton cargar;
     private javax.swing.JLabel jLabel1;
@@ -288,6 +277,6 @@ public class Marcador_Participante extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable uiTablaMarcador;
     // End of variables declaration//GEN-END:variables
 }
-

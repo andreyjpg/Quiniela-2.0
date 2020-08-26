@@ -1,8 +1,7 @@
 /*Integrantes 
     Andrey Pérez Granados
     David Fallas Morales
-
-*/
+ */
 package Admin;
 
 public class Marcadores {

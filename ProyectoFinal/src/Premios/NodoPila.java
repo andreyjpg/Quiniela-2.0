@@ -1,3 +1,7 @@
+/*Integrantes 
+    Andrey Pérez Granados
+    David Fallas Morales
+ */
 package Premios;
 
 import Premios.Dato;
