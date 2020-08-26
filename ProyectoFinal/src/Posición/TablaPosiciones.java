@@ -21,9 +21,6 @@ import javax.swing.table.DefaultTableModel;
 
 
 public class TablaPosiciones extends javax.swing.JFrame {
-    private Connection cn;
-    private Statement Sentenciador;
-    private LinkedList<Pila> posicion;
     private Usuarios.Dato usuarioActivo;
     private Estructuras estructurasDatosObject;
             
@@ -33,33 +30,27 @@ public class TablaPosiciones extends javax.swing.JFrame {
      */
     public TablaPosiciones() {
         initComponents();
-        conexion();
-        posicion = new LinkedList<>();
-        posiciones();
         setLocationRelativeTo(null);
     }
     
     public TablaPosiciones(Estructuras objeto, Usuarios.Dato usuarioActivo) {
         initComponents();
-        conexion();
-        posicion = new LinkedList<>();
         this.usuarioActivo = usuarioActivo;
         this.estructurasDatosObject = objeto;
+        llenarTabla();
         setLocationRelativeTo(null);
     }
     
-    private void posiciones(){
-        
+    private void llenarTabla(){
+        DefaultTableModel estructura = (DefaultTableModel) uiPosiciones.getModel();
+        //Limpia Jtable
+        estructura.setRowCount(0);
+            
+        estructura = estructurasDatosObject.getListaDC_Posiciones().listaATabla(estructura, 0, estructurasDatosObject);
+        uiPosiciones.getModel();
+    
     }
     
-    private void conexion(){
-        try{
-            Sentenciador = cn.createStatement();
-        } catch(Exception e){
-            System.out.println(e);
-        }
-        
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -87,14 +78,14 @@ public class TablaPosiciones extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Posición", "Nombre", "Puntos"
+                "Posición", "Nombre", "Puntos", "Premios"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {

@@ -69,6 +69,7 @@ public class AgregarMarcador_Admin extends javax.swing.JFrame {
             estructurasDatosObject.getListaCS_partidosFinalizados().sumaPuntos(estructurasDatosObject);
                     
             estructurasDatosObject.getListaSimple_marcadoresUsuario().crearTablaPosiciones(estructurasDatosObject);
+            JOptionPane.showMessageDialog(null, estructurasDatosObject);
     }
     
     
