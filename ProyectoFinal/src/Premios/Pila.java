@@ -4,7 +4,7 @@
 */
 package Premios;
 
-import Posición.Dato;
+import Premios.Dato;
 import Premios.NodoPila;
 import javax.swing.JOptionPane;
 

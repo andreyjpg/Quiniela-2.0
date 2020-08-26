@@ -1,6 +1,6 @@
 package Premios;
 
-import Posición.Dato;
+import Premios.Dato;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

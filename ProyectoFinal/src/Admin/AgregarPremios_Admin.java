@@ -11,8 +11,7 @@ public class AgregarPremios_Admin extends javax.swing.JFrame {
 
     private Usuarios.Dato usuarioActivo;
     private Estructuras estructurasDatosObject;
-    private Premios.Dato datoPremios;
-    private Posición.ListaDobleCircular accionPremios;
+
     /**
      * Creates new form AgregarPremios_Admin
      */
@@ -25,7 +24,6 @@ public class AgregarPremios_Admin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         this.estructurasDatosObject = objeto;
         this.usuarioActivo = usuarioActivo;
-        this.datoPremios = null;
     }
 
     /**
@@ -171,14 +169,14 @@ public class AgregarPremios_Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_uiAtrasActionPerformed
 
     private void uiGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uiGuardarActionPerformed
-        String Premio = uiPremio.getText();
+        String premio = uiPremio.getText();
         int valorPremio = Integer.parseInt(uiPuntajePremio.getText());
         if (uiPremio.getText().isEmpty()&& (uiPuntajePremio.getText().isEmpty())) {
             JOptionPane.showMessageDialog(null, "Error - Favor digite un nombre de premio y su puntaje respectivo!");
         }else{
-            datoPremios.setDescripcion(Premio);
-            datoPremios.setIdPremio(valorPremio);
-            //accionPremios.agregar(datoPremios);
+            Premios.Dato nuevoPremio = new Premios.Dato(premio,valorPremio);
+            estructurasDatosObject.getPilaPremios().apilar(nuevoPremio);
+            JOptionPane.showMessageDialog(null, "Premio agregado al istema satisfactoriamente!");
         }
     }//GEN-LAST:event_uiGuardarActionPerformed
 

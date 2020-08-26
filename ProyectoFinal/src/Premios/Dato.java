@@ -10,7 +10,7 @@ public class Dato {
     private int idPremio;
     private String descripcion;
     
-    public Dato(){
+    public Dato(String premio, int valorPremio){
         idPremio = 0;
         descripcion =""; 
     }
