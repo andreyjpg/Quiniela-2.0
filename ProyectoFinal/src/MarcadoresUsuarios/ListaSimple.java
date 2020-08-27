@@ -90,13 +90,19 @@ public class ListaSimple {
         }
     }
     
-    public DefaultTableModel ListaESATabla(DefaultTableModel estructura, int fila){
+    public DefaultTableModel ListaESATabla(DefaultTableModel estructura, int fila, Usuarios.Dato usuario){
         if(!esVacia()){
             NodoLS aux = inicio;
             while(aux!=null){
-                estructura.insertRow(fila, new Object[]{aux.getDato().getIdPartido(),aux.getDato().getEquipoL(),aux.getDato().getEquipoV(),aux.getDato().getMarcadorL(),aux.getDato().getMarcadorV()});
+                if (usuario.getIdUsuario() == aux.getDato().getIdUsuario()){
+                    estructura.insertRow(fila, new Object[]{aux.getDato().getIdPartido(),
+                    aux.getDato().getEquipoL(),aux.getDato().getMarcadorL(), 
+                    aux.getDato().getEquipoV(),aux.getDato().getMarcadorV(),
+                    aux.getDato().getPuntosObtenidos()});
                 
-                fila +=1;
+                    fila +=1;
+                }
+                
                 aux = aux.getSiguiente();
             }
         } else {
@@ -109,7 +115,7 @@ public class ListaSimple {
         if (!esVacia()) {
             NodoLS aux = inicio;
             while (aux != null) {
-                if ((aux.getDato().getIdPartido() == idPartido)&& usuarioParticipante == aux.getDato().getIdPartido()) {
+                if (aux.getDato().getIdPartido() == idPartido && usuarioParticipante == aux.getDato().getIdUsuario()) {
                     aux.getDato().setMarcadorL(marcadorLPart);
                     aux.getDato().setMarcadorV(marcadorVPart);
                 }

@@ -127,23 +127,17 @@
             <Component class="javax.swing.JTable" name="uiTablaMarcador">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="7" rowCount="0">
-                    <Column editable="false" title="Inicio" type="java.lang.Boolean"/>
+                  <Table columnCount="6" rowCount="0">
+                    <Column editable="false" title="Idpartido" type="java.lang.Integer"/>
                     <Column editable="false" title="Equipo Local" type="java.lang.Object"/>
                     <Column editable="true" title="Marcador Local" type="java.lang.Integer"/>
                     <Column editable="false" title="Equipo Visitante" type="java.lang.Object"/>
                     <Column editable="true" title="Marcador Visitante" type="java.lang.Integer"/>
-                    <Column editable="false" title="Idpartido" type="java.lang.Integer"/>
                     <Column editable="false" title="Puntos" type="java.lang.Integer"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                       <Title/>
                       <Editor/>

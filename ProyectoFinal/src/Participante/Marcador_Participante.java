@@ -14,7 +14,6 @@ import javax.swing.table.TableModel;
 
 public class Marcador_Participante extends javax.swing.JFrame {
 
-    DefaultTableModel estructura;
     private Usuarios.Dato usuarioActivo;
     private Estructuras estructurasDatosObject;
 
@@ -24,7 +23,7 @@ public class Marcador_Participante extends javax.swing.JFrame {
     public Marcador_Participante(Estructuras objeto, Usuarios.Dato usuarioActivo) {
         initComponents();
         this.usuarioActivo = usuarioActivo;
-        //Marcadorusuario();
+        estructurasDatosObject = objeto;
         RefrescarTabla();
         setLocationRelativeTo(null);
 
@@ -41,7 +40,7 @@ public class Marcador_Participante extends javax.swing.JFrame {
         //Limpia Jtable
         estructura.setRowCount(0);
         
-        estructura = estructurasDatosObject.getListaSimple_marcadoresUsuario().ListaESATabla(estructura,0);
+        estructura = estructurasDatosObject.getListaSimple_marcadoresUsuario().ListaESATabla(estructura,0, usuarioActivo);
         uiTablaMarcador.getModel();
 
     }
@@ -50,9 +49,9 @@ public class Marcador_Participante extends javax.swing.JFrame {
         TableModel tablaParticipante = uiTablaMarcador.getModel();
         for (int i = 0; i < uiTablaMarcador.getRowCount(); i++) {
             int idPartidoPart = Integer.parseInt(String.valueOf(tablaParticipante.getValueAt(i, 0)));
-            int marcadorLPart = Integer.parseInt(String.valueOf(tablaParticipante.getValueAt(i, 3)));
-            int marcardorVPart = Integer.parseInt(String.valueOf(tablaParticipante.getValueAt(i, 5)));
-            estructurasDatosObject.getListaSimple_marcadoresUsuario().guardarCambios(marcadorLPart, marcardorVPart, idPartidoPart, usuarioActivo.getIdUsuario()));
+            int marcadorLPart = Integer.parseInt(String.valueOf(tablaParticipante.getValueAt(i, 2)));
+            int marcardorVPart = Integer.parseInt(String.valueOf(tablaParticipante.getValueAt(i, 4)));
+            estructurasDatosObject.getListaSimple_marcadoresUsuario().guardarCambios(marcadorLPart, marcardorVPart, idPartidoPart, usuarioActivo.getIdUsuario());
         }
     }
 
@@ -94,14 +93,14 @@ public class Marcador_Participante extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Inicio", "Equipo Local", "Marcador Local", "Equipo Visitante", "Marcador Visitante", "Idpartido", "Puntos"
+                "Idpartido", "Equipo Local", "Marcador Local", "Equipo Visitante", "Marcador Visitante", "Puntos"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Boolean.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, true, false, true, false, false
+                false, false, true, false, true, false
             };
 
             public Class getColumnClass(int columnIndex) {

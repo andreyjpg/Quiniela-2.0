@@ -185,7 +185,7 @@ public class MenuParticipante extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
-        Inicio atras = new Inicio();
+        Inicio atras = new Inicio(estructurasDatosObject);
         atras.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_cerrarActionPerformed

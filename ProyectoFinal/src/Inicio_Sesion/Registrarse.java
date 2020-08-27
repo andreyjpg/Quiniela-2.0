@@ -35,6 +35,7 @@ public class Registrarse extends javax.swing.JFrame {
         uiComfContraseña = new javax.swing.JPasswordField();
         uiContraseña = new javax.swing.JPasswordField();
         jLabel6 = new javax.swing.JLabel();
+        uiRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,6 +92,17 @@ public class Registrarse extends javax.swing.JFrame {
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/User_Logo.png"))); // NOI18N
 
+        uiRegresar.setBackground(new java.awt.Color(0, 0, 0));
+        uiRegresar.setFont(new java.awt.Font("Agency FB", 1, 24)); // NOI18N
+        uiRegresar.setForeground(new java.awt.Color(255, 255, 255));
+        uiRegresar.setText("Regresar");
+        uiRegresar.setToolTipText("");
+        uiRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                uiRegresarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -111,7 +123,9 @@ public class Registrarse extends javax.swing.JFrame {
                         .addComponent(jLabel6))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(35, 35, 35)
-                        .addComponent(uiRegistrarse)))
+                        .addComponent(uiRegistrarse)
+                        .addGap(18, 18, 18)
+                        .addComponent(uiRegresar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -137,7 +151,9 @@ public class Registrarse extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(uiComfContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(uiRegistrarse)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(uiRegistrarse)
+                    .addComponent(uiRegresar))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
@@ -192,6 +208,12 @@ public class Registrarse extends javax.swing.JFrame {
 
     }//GEN-LAST:event_uiComfContraseñaActionPerformed
 
+    private void uiRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uiRegresarActionPerformed
+        Inicio newWindow = new Inicio(estructurasDatosObject);
+        this.setVisible(false);
+        newWindow.setVisible(true);
+    }//GEN-LAST:event_uiRegresarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -238,5 +260,6 @@ public class Registrarse extends javax.swing.JFrame {
     private javax.swing.JPasswordField uiContraseña;
     private javax.swing.JTextField uiCorreo;
     private javax.swing.JButton uiRegistrarse;
+    private javax.swing.JButton uiRegresar;
     // End of variables declaration//GEN-END:variables
 }

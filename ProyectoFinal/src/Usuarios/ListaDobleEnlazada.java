@@ -40,7 +40,7 @@ public class ListaDobleEnlazada {
             }
 
             nuevoNodo.setSiguiente(aux.getSiguiente());
-            aux.getSiguiente().setAnterior(nuevoNodo);
+            if(aux.getSiguiente() != null) aux.getSiguiente().setAnterior(nuevoNodo);
             nuevoNodo.setAnterior(aux);
             aux.setSiguiente(nuevoNodo);
 
@@ -111,6 +111,8 @@ public class ListaDobleEnlazada {
                     nuevoPartido.setIdUsuario(aux.getDato().getIdUsuario());
                     nuevoPartido.setIdMarcador(contMarcadores + 1);
                     nuevoPartido.setIdPartido(partido.getIdPartido());
+                    nuevoPartido.setEquipoL(partido.getEquipoL());
+                    nuevoPartido.setEquipoV(partido.getEquipoV());
                     objetoEstructuras.getListaSimple_marcadoresUsuario().enlazar(nuevoPartido);
 
                 }

@@ -46,11 +46,11 @@ public class Pila {
         if(!esVacia()){
             int i = 0; 
             NodoPila aux = cima;
-            while(i < númeroNodo){
+            while(i < númeroNodo && aux != null){
                 aux = aux.getSiguiente();
                 i+=1;
             }
-            respuesta = aux.getDato().getDescripcion();
+            respuesta = aux != null ? aux.getDato().getDescripcion() : "";
         }
        
         return respuesta;

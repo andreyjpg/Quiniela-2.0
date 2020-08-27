@@ -291,6 +291,7 @@ public class AgregarMarcador_Admin extends javax.swing.JFrame {
             int marcadorV = Integer.parseInt(String.valueOf(tabla.getValueAt(i, 4)));
             estructurasDatosObject.getColaPartidos().guardarCambios(marcadorL, marcadorV, idPartido);
         }
+       JOptionPane.showMessageDialog(null, "Datos guardados");
         
     }
     /**

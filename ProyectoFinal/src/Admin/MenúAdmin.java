@@ -210,7 +210,7 @@ public class MenúAdmin extends javax.swing.JFrame {
 
     private void uiCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uiCerrarSesionActionPerformed
         // TODO add your handling code here:
-        Inicio atras = new Inicio();
+        Inicio atras = new Inicio(estructurasDatosObject);
         atras.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_uiCerrarSesionActionPerformed

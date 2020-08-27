@@ -15,12 +15,12 @@ public class Dato {
     private int marcadorV;
     private int PuntosObtenidos;
     
-    public Dato(String local, String visitante) {
+    public Dato() {
         idMarcador = 0;
         idPartido = 0;
         idUsuario = 0;
-        equipoL = local;
-        equipoV = visitante;
+        equipoL = "";
+        equipoV = "";
         marcadorL = 0;
         marcadorV = 0;
         PuntosObtenidos = 0; 

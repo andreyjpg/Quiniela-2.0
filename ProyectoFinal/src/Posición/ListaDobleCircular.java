@@ -34,6 +34,7 @@ public class ListaDobleCircular {
             nuevo.setSiguiente(inicio);
             inicio = nuevo;
         } else if( dato.getPuntaje()>= fin.getDato().getPuntaje()){
+            nuevo.setAnterior(fin);
             fin.setSiguiente(nuevo);
             fin = fin.getSiguiente();
             fin.setSiguiente(inicio);
@@ -125,7 +126,7 @@ public class ListaDobleCircular {
         }
         datoActualizado.setSiguiente(aux.getSiguiente());
         datoActualizado.setAnterior(aux);
-        aux.setSiguiente(aux);
+        aux.setSiguiente(datoActualizado);
         aux.getSiguiente().setAnterior(datoActualizado);
         
     }
